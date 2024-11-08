@@ -1,0 +1,23 @@
+{
+  "width": 25,
+  "height": 17,
+  "blocks": [
+    ["air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air"],
+    ["air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air"],
+    ["air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air"],
+    ["air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air"],
+    ["air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air"],
+    ["air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air"],
+    ["air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air"],
+    ["air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air"],
+    ["air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air"],
+    ["air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air"],
+    ["air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air"],
+    ["air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air"],
+    ["air", "air", "air", "air", "air", "player", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air", "air"],
+    ["grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt"],
+    ["stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone"],
+    ["stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone"]
+  ]
+}
