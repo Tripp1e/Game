@@ -103,8 +103,6 @@ public class Level extends Screen {
                         player.addTo(this, x, y);
                         break;
                     default:
-                        Air air = new Air();
-                        air.addTo(this, x, y);
                         break;
                 }
             }
