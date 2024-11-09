@@ -15,6 +15,10 @@ public abstract class Movement {
     protected static final Map<Direction, Runnable> movements = new EnumMap<>(Direction.class);
 
     private boolean facingLeft;
+    private int verticalVelocity = 0;
+    private final int gravity = 1;
+    private final int jumpStrength = -15;
+    private boolean onGround = false;
 
     public Movement(Entity entity) {
         this.entity = entity;
@@ -39,7 +43,8 @@ public abstract class Movement {
     private void moveLeft()     { moveEntity(-entity.speed, 0, true, entity.walking); }
     private void moveRight()    { moveEntity( entity.speed, 0, false, entity.mirroredWalking); }
     private void moveDown()     { moveEntity(0,  entity.speed, facingLeft, entity.crouching); }
-    private void moveUp()       { moveEntity(0, -entity.speed, facingLeft, facingLeft ? entity.jumping : entity.mirroredJumping); }
+    private void moveUp()       { if (onGround) verticalVelocity = jumpStrength; onGround = false; }
+
 
     protected boolean cantMoveTo(int dx, int dy) {
         int halfWidth = Block.width / 2;
@@ -51,6 +56,21 @@ public abstract class Movement {
         };
         return Arrays.stream(offsets)
                 .anyMatch(offset -> entity.getOneObjectAtOffset(dx + offset[0], dy + offset[1], Block.class) != null);
+    }
+
+    protected void applyGravity() {
+        if (!onGround) {
+            verticalVelocity += gravity;
+            if (cantMoveTo(0, verticalVelocity)) {
+                while (verticalVelocity != 0 && !cantMoveTo(0, verticalVelocity)) {
+                    verticalVelocity++;
+                }
+                onGround = true;
+                verticalVelocity = 0;
+            } else {
+                moveEntity(0, verticalVelocity, facingLeft, entity.walking);
+            }
+        }
     }
 
 }
