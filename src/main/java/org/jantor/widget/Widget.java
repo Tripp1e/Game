@@ -1,4 +1,4 @@
-package org.jantor.widgets;
+package org.jantor.widget;
 
 import greenfoot.Actor;
 

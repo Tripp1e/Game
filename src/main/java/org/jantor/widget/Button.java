@@ -1,9 +1,9 @@
-package org.jantor.widgets;
+package org.jantor.widget;
 
-import greenfoot.*;
 import greenfoot.Color;
-import org.jantor.screens.Screen;
-import static org.jantor.mixin.GreenfootImage.drawRoundRect;
+import greenfoot.Greenfoot;
+import org.jantor.image.GreenfootImage;
+import org.jantor.screen.Screen;
 
 
 public class Button extends Widget {
@@ -24,10 +24,9 @@ public class Button extends Widget {
         this(name, link, Color.BLACK, Color.WHITE);
     }
 
-
     public void setHitbox() {
         GreenfootImage button = new GreenfootImage(width, height);
-        drawRoundRect(button, 15, width, height, color);
+        button.drawRoundRect(15, width, height, color);
 
         button.setColor(fontColor);
         button.drawString(name, width / 2, height / 2);
@@ -40,10 +39,4 @@ public class Button extends Widget {
             Greenfoot.setWorld(link);
         }
     }
-
-
-
-
-
-
 }
