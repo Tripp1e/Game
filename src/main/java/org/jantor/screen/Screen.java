@@ -1,4 +1,4 @@
-package org.jantor.screens;
+package org.jantor.screen;
 
 import greenfoot.Color;
 import greenfoot.GreenfootImage;

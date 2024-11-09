@@ -1,7 +1,7 @@
-package org.jantor.screens;
+package org.jantor.screen;
 
 import greenfoot.World;
-import org.jantor.widgets.Widget;
+import org.jantor.widget.Widget;
 
 import java.util.ArrayList;
 import java.util.Arrays;

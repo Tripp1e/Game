@@ -1,7 +1,7 @@
-package org.jantor.levels;
+package org.jantor.level;
 
-import org.jantor.entities.Block;
-import org.jantor.entities.Stone;
+import org.jantor.level.element.block.Block;
+import org.jantor.level.element.block.Stone;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
