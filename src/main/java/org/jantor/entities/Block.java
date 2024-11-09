@@ -10,7 +10,15 @@ public class Block extends Actor {
     public Block(String name) {
         setImage("resources/image/" + name + ".png");
     }
+
+    @Override
+    public void act() {
+
+    }
+
     public void addTo(World world, int x, int y) {
         world.addObject(this, x * width, y * Stone.height);
     }
+
+
 }

@@ -3,7 +3,7 @@ package org.jantor.widgets;
 import greenfoot.*;
 import greenfoot.Color;
 import org.jantor.screens.Screen;
-import static org.jantor.mixin.GreenFootImage.drawRoundRect;
+import static org.jantor.mixin.GreenfootImage.drawRoundRect;
 
 
 public class Button extends Widget {
