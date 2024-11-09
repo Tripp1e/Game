@@ -17,7 +17,7 @@ public class LevelBuilder {
         return this;
     }
     public LevelBuilder setRow( int row, String blockType) {
-        Arrays.fill(blocks[row], "air");
+        Arrays.fill(blocks[row], blockType);
         return this;
     }
 

@@ -8,10 +8,6 @@ public class PlayerMovement extends Movement {
         super(player);
     }
 
-    void move() {
-
-    }
-
     @Override
     public void act() {
         movements.forEach((direction, action) -> {
