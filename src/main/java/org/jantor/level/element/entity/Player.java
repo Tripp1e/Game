@@ -8,11 +8,10 @@ public class Player extends Entity {
     final static String crouchedImgPath = "player/crouching.png";
 
     public Player() {
-        super(crouchedImgPath,null,
+        super(crouchedImgPath, null,
                 walkImgPath,
                 jumpImgPath,
                 crouchedImgPath);
         this.movement = new PlayerMovement(this);
     }
-
 }
