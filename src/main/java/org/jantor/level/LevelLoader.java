@@ -1,7 +1,6 @@
 package org.jantor.level;
 
 import org.jantor.level.element.Element;
-import org.jantor.level.element.block.Block;
 import org.jantor.level.element.block.Dirt;
 import org.jantor.level.element.block.Grass;
 import org.jantor.level.element.block.Stone;

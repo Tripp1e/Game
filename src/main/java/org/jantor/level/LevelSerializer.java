@@ -48,7 +48,7 @@ public class LevelSerializer {
         String jsonOutput = String.format("{\n  \"width\": %d,\n  \"height\": %d,\n%s\n}",
                 levelJson.getInt("width"),
                 levelJson.getInt("height"),
-                formattedBlocks.toString());
+                formattedBlocks);
 
         // Write the formatted string to the file
         try (FileWriter fileWriter = new FileWriter("resources/levels/" + filename)) {

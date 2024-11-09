@@ -12,11 +12,6 @@ public class Element extends Actor {
         setImage("resources/image/" + name);
     }
 
-    @Override
-    public void act() {
-
-    }
-
     public void addTo(World world, int x, int y) {
         world.addObject(this, x * width, y * Stone.height);
     }
