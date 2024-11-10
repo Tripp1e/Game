@@ -6,10 +6,14 @@ import org.jantor.level.element.entity.movement.PlayerMovement;
 public class Player extends Entity {
     final static PlayerImage walkImg = new PlayerImage("walking.gif");
     final static PlayerImage jumpImg = new PlayerImage("jumping.png");
-    final static PlayerImage crouchedImg = new PlayerImage("crouching.png");
+    final static PlayerImage crouchImg = new PlayerImage("crouching.png");
 
     public Player() {
-        super(null, walkImg, jumpImg, crouchedImg);
+        super(null,
+                walkImg,
+                jumpImg,
+                crouchImg);
         this.movement = new PlayerMovement(this);
     }
+
 }

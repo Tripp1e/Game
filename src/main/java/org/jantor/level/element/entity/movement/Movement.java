@@ -16,9 +16,8 @@ public abstract class Movement {
 
     private boolean facingLeft;
     private int verticalVelocity = 0;
-    private final int gravity = 1;
-    private final int jumpStrength = -15;
     private boolean onGround = false;
+
 
     public Movement(Entity entity) {
         this.entity = entity;
@@ -43,8 +42,9 @@ public abstract class Movement {
     private void moveLeft()     { moveEntity(-entity.speed, 0, true, entity.walking); }
     private void moveRight()    { moveEntity( entity.speed, 0, false, entity.mirroredWalking); }
     private void moveDown()     { moveEntity(0,  entity.speed, facingLeft, entity.crouching); }
-    private void moveUp()       { if (onGround) verticalVelocity = jumpStrength; onGround = false; entity.setImage(facingLeft ? entity.jumping : entity.mirroredJumping); }
-
+    private void moveUp()       {
+        int jumpStrength = -15;
+        if (onGround) verticalVelocity = jumpStrength; onGround = false; entity.setImage(facingLeft ? entity.jumping : entity.mirroredJumping); }
 
     protected boolean cantMoveTo(int dx, int dy) {
         int halfWidth = Block.width / 2;
@@ -60,6 +60,7 @@ public abstract class Movement {
 
     protected void applyGravity() {
         if (!onGround) {
+            int gravity = 1;
             verticalVelocity += gravity;
             if (cantMoveTo(0, verticalVelocity)) {
                 while (verticalVelocity != 0 && !cantMoveTo(0, verticalVelocity)) {

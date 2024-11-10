@@ -1,10 +1,7 @@
 package org.jantor.image;
 
-public class ElementImage extends GreenfootImage {
-    public ElementImage(String path, String fileName ) {
-        super(path + fileName);
-    }
+public abstract class ElementImage extends GreenfootImage {
     public ElementImage(String fileName) {
-        this("resources/image/", fileName);
+        super(fileName);
     }
 }
