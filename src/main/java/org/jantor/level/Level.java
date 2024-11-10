@@ -20,7 +20,7 @@ import java.util.Map;
 public class Level extends Screen {
     private int width;
     private int height;
-    private String[][] blocks;
+    private String[][] elements;
     private static final Map<String, Class<? extends Element>> BLOCK_MAP = new HashMap<>();
 
     static {
@@ -50,7 +50,7 @@ public class Level extends Screen {
             width = levelJson.getInt("width");
             height = levelJson.getInt("height");
 
-            blocks = new String[height][width];
+            elements = new String[height][width];
 
             JSONArray blocksJson = levelJson.getJSONArray("blocks");
 
@@ -60,7 +60,7 @@ public class Level extends Screen {
                 JSONArray row = blocksJson.getJSONArray(y);
 
                 for (int x = 0; x < width; x++) {
-                    blocks[y][x] = row.getString(x);
+                    elements[y][x] = row.getString(x);
                 }
             }
         } catch (Exception e) {
@@ -83,7 +83,7 @@ public class Level extends Screen {
     public void createBlocks() {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                String blockTypeString = blocks[y][x];
+                String blockTypeString = elements[y][x];
                 Class<? extends Element> blockClass = BLOCK_MAP.get(blockTypeString);
 
                 if (blockClass != null) {

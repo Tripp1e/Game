@@ -40,3 +40,8 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### UML ###
+
+uml.png
+uml.puml
