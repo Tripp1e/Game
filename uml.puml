@@ -1,0 +1,195 @@
+@startuml
+class org.jantor.image.ElementImage {
+}
+class org.jantor.level.element.Element {
++ {static} int width
++ {static} int height
++ void addTo(World,int,int)
+}
+
+
+class org.jantor.screen.Layout {
+- int verticalGap
+- int horizontalGap
+- int usableWidth
+- Widget[] widgets
++ void addTo(World)
+- List<List<Widget>> getColumns()
+- List<List<Widget>> getRows()
+- List<List<Widget>> splitList(Widget[],int)
+- int getX(int)
+- int getY(int)
+}
+
+
+abstract class org.jantor.level.element.entity.movement.Movement {
++ Entity entity
+# {static} Map<Direction,Runnable> movements
+- boolean facingLeft
+- int verticalVelocity
+- int gravity
+- int jumpStrength
+- boolean onGround
+- void initializeMovements()
++ {abstract}void act()
+- void moveEntity(int,int,boolean,GreenfootImage)
+- void moveLeft()
+- void moveRight()
+- void moveDown()
+- void moveUp()
+# boolean cantMoveTo(int,int)
+# void applyGravity()
+}
+
+
+enum org.jantor.level.element.entity.movement.Direction {
++  LEFT
++  RIGHT
++  UP
++  DOWN
+}
+
+class org.jantor.image.BlockImage {
+}
+class org.jantor.image.GreenfootImage {
++ void drawRoundRect(int,int,int,Color)
++ GreenfootImage getMirroredHorizontally()
+}
+
+class org.jantor.level.LevelSaver {
++ {static} void saveLevel(Stone[][],String)
+- {static} JSONArray getObjects(Stone[][])
+}
+
+class org.jantor.screen.Screen {
++ {static} int width
++ {static} int height
++ {static} Color backgroundColor
+~ void setBackground()
+}
+
+
+abstract class org.jantor.level.element.block.Block {
++ {static} int width
++ {static} int height
+}
+
+class org.jantor.level.LevelLoader {
+- {static} Map<String,Class<? extends Element>> blockRegistry
+- {static} Element createBlock(String)
+}
+
+
+class org.jantor.level.element.block.Grass {
++ {static} BlockImage image
+}
+
+class org.jantor.widget.Clickable {
+~ Runnable runnable
++ void act()
+}
+
+
+class org.jantor.level.Level {
+- int width
+- int height
+- String[][] blocks
+- {static} Map<String,Class<? extends Element>> BLOCK_MAP
+- void loadLevel(String)
+- {static} JSONObject getJsonObject(InputStream)
++ void createBlocks()
+}
+
+
+class org.jantor.level.element.block.Dirt {
++ {static} BlockImage image
+}
+
+class org.jantor.widget.Button {
+~ Screen link
+~ Color color
+~ Color fontColor
++ void setHitbox()
++ void act()
+}
+
+
+class org.jantor.screen.MainScreen {
+- Runnable runnable
+- Button[] buttons
+- void loadOptions()
+}
+
+
+class org.jantor.level.LevelBuilder {
+- String[][] blocks
++ LevelBuilder setBlock(int,int,String)
++ LevelBuilder setRow(int,String)
++ String[][] build()
++ {static} LevelBuilder createLevel(int,int)
+}
+
+
+class org.jantor.image.PlayerImage {
+}
+class org.jantor.level.element.entity.Player {
+~ {static} PlayerImage walkImg
+~ {static} PlayerImage jumpImg
+~ {static} PlayerImage crouchedImg
+}
+
+abstract class org.jantor.widget.Widget {
++ {static} int width
++ {static} int height
++ String name
+}
+
+class org.jantor.level.element.entity.movement.PlayerMovement {
++ void act()
+}
+
+abstract class org.jantor.level.element.entity.Entity {
++ ElementImage walking
++ ElementImage jumping
++ ElementImage crouching
++ GreenfootImage mirroredWalking
++ GreenfootImage mirroredJumping
+~ Movement movement
++ int speed
++ void act()
++ Actor getOneObjectAtOffset(int,int,Class<?>)
+}
+
+
+class org.jantor.screen.OptionsScreen {
+}
+class org.jantor.level.LevelSerializer {
++ {static} JSONObject toJSON(String[][])
++ {static} void saveToFile(String[][],String)
+}
+
+class org.jantor.level.element.block.Stone {
++ {static} BlockImage image
+}
+
+
+
+org.jantor.image.GreenfootImage <|-- org.jantor.image.ElementImage
+greenfoot.Actor <|-- org.jantor.level.element.Element
+org.jantor.image.ElementImage <|-- org.jantor.image.BlockImage
+org.jantor.image.GreenfootImage <|-- org.jantor.image.GreenfootImage
+greenfoot.World <|-- org.jantor.screen.Screen
+org.jantor.level.element.Element <|-- org.jantor.level.element.block.Block
+org.jantor.level.element.block.Block <|-- org.jantor.level.element.block.Grass
+org.jantor.widget.Button <|-- org.jantor.widget.Clickable
+org.jantor.screen.Screen <|-- org.jantor.level.Level
+org.jantor.level.element.block.Block <|-- org.jantor.level.element.block.Dirt
+org.jantor.widget.Widget <|-- org.jantor.widget.Button
+org.jantor.screen.Screen <|-- org.jantor.screen.MainScreen
+org.jantor.image.ElementImage <|-- org.jantor.image.PlayerImage
+org.jantor.level.element.entity.Entity <|-- org.jantor.level.element.entity.Player
+greenfoot.Actor <|-- org.jantor.widget.Widget
+org.jantor.level.element.entity.movement.Movement <|-- org.jantor.level.element.entity.movement.PlayerMovement
+org.jantor.level.element.Element <|-- org.jantor.level.element.entity.Entity
+org.jantor.level.element.block.Block <|-- org.jantor.level.element.block.Stone
+@enduml
