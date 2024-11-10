@@ -17,11 +17,11 @@ public abstract class Entity extends Element {
     Movement movement;
     final public int speed;
 
-    public Entity(String initalImgPath, Movement movement, String walkImgPath, String jumpImgPath, String crouchImgPath, int speed) {
-        super(initalImgPath);
-        this.walking = new EntityImage(walkImgPath);
-        this.jumping = new EntityImage(jumpImgPath);
-        this.crouching = new EntityImage(crouchImgPath);
+    public Entity(Movement movement, EntityImage walkImg, EntityImage jumpImg, EntityImage crouchImg, int speed) {
+        super(walkImg);
+        this.walking = walkImg;
+        this.jumping = jumpImg;
+        this.crouching = crouchImg;
 
         mirroredWalking = walking.getMirroredHorizontally();
         mirroredJumping = jumping.getMirroredHorizontally();
@@ -29,8 +29,8 @@ public abstract class Entity extends Element {
         this.speed = speed;
         this.movement = movement;
     }
-    public Entity(String initialImgPath, Movement movement, String walkImgPath, String jumpImgPath, String crouchImgPath) {
-        this(initialImgPath, movement, walkImgPath, jumpImgPath, crouchImgPath, 5);
+    public Entity(Movement movement, EntityImage walkImg, EntityImage jumpImg, EntityImage crouchImg) {
+        this(movement, walkImg, jumpImg, crouchImg, 5);
     }
 
     @Override

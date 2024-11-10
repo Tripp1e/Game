@@ -10,6 +10,7 @@ public class PlayerMovement extends Movement {
 
     @Override
     public void act() {
+        applyGravity();
         movements.forEach((direction, action) -> {
             if (Greenfoot.isKeyDown(direction.name().toLowerCase())) {
                 action.run();
