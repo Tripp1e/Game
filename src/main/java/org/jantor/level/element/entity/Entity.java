@@ -2,35 +2,36 @@ package org.jantor.level.element.entity;
 
 import greenfoot.Actor;
 import org.jantor.image.EntityImage;
+import org.jantor.image.GifImage;
 import org.jantor.image.GreenfootImage;
 import org.jantor.level.element.Element;
 import org.jantor.level.element.entity.movement.Movement;
 
 public abstract class Entity extends Element {
-    public final EntityImage walking;
+    public final GifImage walking;
     public final EntityImage jumping;
     public final EntityImage crouching;
 
-    public final GreenfootImage mirroredWalking;
+    public final GifImage mirroredWalking;
     public final GreenfootImage mirroredJumping;
 
     Movement movement;
     final public int speed;
 
-    public Entity(Movement movement, EntityImage walkImg, EntityImage jumpImg, EntityImage crouchImg, int speed) {
-        super(walkImg);
+    public Entity(Movement movement, GifImage walkImg, GifImage walkImgMirrored, EntityImage jumpImg, EntityImage crouchImg, int speed) {
+        super(crouchImg);
         this.walking = walkImg;
         this.jumping = jumpImg;
         this.crouching = crouchImg;
 
-        mirroredWalking = walking.getMirroredHorizontally();
+        mirroredWalking = walkImgMirrored;
         mirroredJumping = jumping.getMirroredHorizontally();
 
         this.speed = speed;
         this.movement = movement;
     }
-    public Entity(Movement movement, EntityImage walkImg, EntityImage jumpImg, EntityImage crouchImg) {
-        this(movement, walkImg, jumpImg, crouchImg, 5);
+    public Entity(Movement movement, GifImage walkImg, GifImage walkImgMirrored, EntityImage jumpImg, EntityImage crouchImg) {
+        this(movement, walkImg, walkImgMirrored, jumpImg, crouchImg, 5);
     }
 
     @Override
