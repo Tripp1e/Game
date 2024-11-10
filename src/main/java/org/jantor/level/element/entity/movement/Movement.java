@@ -43,7 +43,7 @@ public abstract class Movement {
     private void moveLeft()     { moveEntity(-entity.speed, 0, true, entity.walking); }
     private void moveRight()    { moveEntity( entity.speed, 0, false, entity.mirroredWalking); }
     private void moveDown()     { moveEntity(0,  entity.speed, facingLeft, entity.crouching); }
-    private void moveUp()       { if (onGround) verticalVelocity = jumpStrength; onGround = false; }
+    private void moveUp()       { if (onGround) verticalVelocity = jumpStrength; onGround = false; entity.setImage(facingLeft ? entity.jumping : entity.mirroredJumping); }
 
 
     protected boolean cantMoveTo(int dx, int dy) {
