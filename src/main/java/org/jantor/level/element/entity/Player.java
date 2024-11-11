@@ -1,5 +1,6 @@
 package org.jantor.level.element.entity;
 
+import greenfoot.GreenfootImage;
 import org.jantor.image.PlayerImage;
 import org.jantor.level.element.entity.movement.PlayerMovement;
 
