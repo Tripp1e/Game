@@ -1,5 +1,6 @@
 package org.jantor.level.element.entity.movement;
 
+import org.jantor.image.GifImage;
 import org.jantor.image.GreenfootImage;
 import org.jantor.level.element.block.Block;
 import org.jantor.level.element.entity.Entity;
@@ -25,23 +26,24 @@ public abstract class Movement {
     }
 
     private void initializeMovements() {
-        movements.put(Direction.LEFT, this::moveLeft);
-        movements.put(Direction.RIGHT, this::moveRight);
         movements.put(Direction.UP, this::moveUp);
         movements.put(Direction.DOWN, this::moveDown);
+        movements.put(Direction.LEFT, this::moveLeft);
+        movements.put(Direction.RIGHT, this::moveRight);
     }
 
     public abstract void act();
 
-    private void moveEntity(int dx, int dy, boolean facingLeft, GreenfootImage image) {
-        entity.setImage(image);
+    private void moveEntity(int dx, int dy, boolean facingLeft, GifImage gif, GreenfootImage image) {
+        GreenfootImage currentImage = image == null ? gif.getCurrentImage() : image;
+        entity.setImage(currentImage);
         if (cantMoveTo(dx, dy)) return;
         entity.setLocation(entity.getX() + dx, entity.getY() + dy);
         this.facingLeft = facingLeft;
     }
-    private void moveLeft()     { moveEntity(-entity.speed, 0, true, entity.walking); }
-    private void moveRight()    { moveEntity( entity.speed, 0, false, entity.mirroredWalking); }
-    private void moveDown()     { moveEntity(0,  entity.speed, facingLeft, entity.crouching); }
+    private void moveLeft()     { moveEntity(-entity.speed, 0, true, entity.walking, null); }
+    private void moveRight()    { moveEntity( entity.speed, 0, false, entity.mirroredWalking, null); }
+    private void moveDown()     { moveEntity(0,  entity.speed, facingLeft, null, entity.crouching); }
     private void moveUp()       {
         int jumpStrength = -15;
         if (onGround) verticalVelocity = jumpStrength; onGround = false; entity.setImage(facingLeft ? entity.jumping : entity.mirroredJumping); }
@@ -69,7 +71,7 @@ public abstract class Movement {
                 onGround = true;
                 verticalVelocity = 0;
             } else {
-                moveEntity(0, verticalVelocity, facingLeft, entity.walking);
+                moveEntity(0, verticalVelocity, facingLeft, entity.walking, null);
             }
         }
     }

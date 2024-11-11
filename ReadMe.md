@@ -1,19 +1,31 @@
-DONE
+✅ DONE
 ---
-> Main Stages
-> Basic Project Structure
 
-Need Polishing
----
-> Level Creation, Loading & Saving
-> Menu Functionality
-> Blocks
+> [!TIP]
+>- **Main Stages**
+>- **Basic Project Structure**
 
-In Progress
+💅 Need Polishing
 ---
-> Gravity
-> Level Design
 
-Planned
+> [!IMPORTANT]
+>- **Level Creation, Loading & Saving**
+>- **Menu Functionality**
+>- **Blocks to Enum?**
+>- **Level Loading**
+
+
+🔨 In Progress
 ---
-> Assets
+
+> [!WARNING]
+>- **Gravity**
+>- **Gif Image Streamlining**
+
+
+📝 Planned
+---
+
+> [!CAUTION]
+>- **Assets**
+>- **Level Design**
