@@ -1,9 +1,11 @@
 package org.jantor.level;
 
+import org.jantor.image.GreenfootImage;
 import org.jantor.level.element.Element;
 import org.jantor.level.element.block.Block;
 import org.jantor.level.element.block.Dirt;
 import org.jantor.level.element.block.Grass;
+import org.jantor.level.element.block.Sand;
 import org.jantor.level.element.block.Stone;
 import org.jantor.level.element.entity.Player;
 import org.jantor.screen.Screen;
@@ -30,6 +32,7 @@ public class Level extends Screen {
         BLOCK_MAP.put("grass", Grass.class);
         BLOCK_MAP.put("dirt", Dirt.class);
         BLOCK_MAP.put("player", Player.class);
+        BLOCK_MAP.put("sand", Sand.class);
     }
 
     public Level(String filename) {
@@ -37,6 +40,12 @@ public class Level extends Screen {
         setPaintOrder(Player.class);
         loadLevel("/levels/" + filename);
         createBlocks();
+        configureBackground();
+    }
+
+    private void configureBackground() {
+        GreenfootImage background = new GreenfootImage("resources/image/level/background.png");
+        setBackground(background);
     }
 
     private void loadLevel(String filename) {
