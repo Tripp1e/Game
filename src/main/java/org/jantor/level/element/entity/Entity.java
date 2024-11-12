@@ -5,6 +5,7 @@ import org.jantor.image.EntityImage;
 import org.jantor.image.GifImage;
 import org.jantor.image.GreenfootImage;
 import org.jantor.level.element.Element;
+import org.jantor.level.element.collectable.Collectable;
 import org.jantor.level.element.entity.movement.Movement;
 
 public abstract class Entity extends Element {
