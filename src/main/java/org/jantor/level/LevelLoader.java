@@ -3,6 +3,7 @@ package org.jantor.level;
 import org.jantor.level.element.Element;
 import org.jantor.level.element.block.Dirt;
 import org.jantor.level.element.block.Grass;
+import org.jantor.level.element.block.Sand;
 import org.jantor.level.element.block.Stone;
 import org.jantor.level.element.entity.Player;
 
@@ -17,6 +18,7 @@ public class LevelLoader {
         blockRegistry.put("grass", Grass.class);
         blockRegistry.put("dirt", Dirt.class);
         blockRegistry.put("player", Player.class);
+        blockRegistry.put("sand", Sand.class);
     }
 
 
