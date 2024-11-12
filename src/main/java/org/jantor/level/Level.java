@@ -1,6 +1,7 @@
 package org.jantor.level;
 
 import org.jantor.level.element.Element;
+import org.jantor.level.element.block.Block;
 import org.jantor.level.element.block.Dirt;
 import org.jantor.level.element.block.Grass;
 import org.jantor.level.element.block.Stone;
@@ -18,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Level extends Screen {
+    public Player player;
     private int width;
     private int height;
     private String[][] elements;
@@ -60,7 +62,7 @@ public class Level extends Screen {
                 JSONArray row = blocksJson.getJSONArray(y);
 
                 for (int x = 0; x < width; x++) {
-                    elements[y][x] = row.getString(x);
+                    elements[y][x] = row.getString(x).replace(" ", "");
                 }
             }
         } catch (Exception e) {
@@ -89,6 +91,9 @@ public class Level extends Screen {
                 if (blockClass != null) {
                     try {
                         Element element = blockClass.getDeclaredConstructor().newInstance();
+                        if (element instanceof Player) {
+                            this.player = (Player) element;
+                        }
                         element.addTo(this, x, y);
                     } catch (Exception e) {
                         e.printStackTrace();

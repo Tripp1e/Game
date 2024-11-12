@@ -17,4 +17,8 @@ public class PlayerMovement extends Movement {
             }
         });
     }
+
+    public void checkCollectable() {
+        if (entity.to)
+    }
 }
