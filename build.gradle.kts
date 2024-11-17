@@ -10,6 +10,15 @@ repositories {
 
 }
 
+sourceSets {
+    main {
+        resources {
+            setSrcDirs(listOf<String>("src/main/assets"))  // Add your custom sources directory here
+        }
+    }
+}
+
+
 dependencies {
     implementation("org.greenfoot:greenfoot:3.7.0.11")
     implementation("org.json:json:20210307")
