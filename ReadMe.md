@@ -3,7 +3,10 @@
 
 > [!TIP]
 >- **Main Stages**
->- **Basic Project Structure**
+>- **Project Structure**
+>- **Gravity**
+>- **Blocks to Enum**
+>- **Level Loading**
 
 💅 Need Polishing
 ---
@@ -11,21 +14,19 @@
 > [!IMPORTANT]
 >- **Level Creation, Loading & Saving**
 >- **Menu Functionality**
->- **Blocks to Enum?**
->- **Level Loading**
+>- **Assets**
 
 
 🔨 In Progress
 ---
 
 > [!WARNING]
->- **Gravity**
->- **Gif Image Streamlining**
-
+>- **Gif Image Fixing**
+>- **Collectables**
+>- **Scrolling Background**
 
 📝 Planned
 ---
 
 > [!CAUTION]
->- **Assets**
 >- **Level Design**

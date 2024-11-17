@@ -12,8 +12,8 @@ public class GreenfootImage extends greenfoot.GreenfootImage {
     public GreenfootImage(String filename) {
         super(filename);
     }
-    public GreenfootImage(int width, int height)
-    {
+
+    public GreenfootImage(int width, int height) {
         super(width, height);
     }
 

@@ -79,10 +79,9 @@ public abstract class Movement {
     }
 
 
-
     protected boolean cantMoveTo(int dx, int dy) {
         int[][] offsets = {
-                {-25, -25}, { 25, -25}, {-25,  25}, { 25,  25}
+                {-25, -25}, {25, -25}, {-25, 25}, {25, 25}
         };
 
         for (int[] offset : offsets) {
@@ -101,6 +100,9 @@ public abstract class Movement {
         if (currentDirection == Vector2D.zeroVector) return EntityImage.STANDING;
         return EntityImage.WALKING;
     }
-    private boolean isFacingLeft() { return lastDirection.x == -1; }
+
+    private boolean isFacingLeft() {
+        return lastDirection.x == -1;
+    }
 
 }

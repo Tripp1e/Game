@@ -10,7 +10,7 @@ public class Screen extends World {
     public static final Color backgroundColor = Color.WHITE;
 
     public Screen() {
-        super(width,height, 1);
+        super(width, height, 1);
     }
 
     void setBackground() {

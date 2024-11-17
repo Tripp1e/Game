@@ -10,5 +10,5 @@ public abstract class Widget extends Actor {
     public Widget(String name) {
         this.name = name;
     }
-    
+
 }
