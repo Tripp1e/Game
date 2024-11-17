@@ -20,6 +20,7 @@ public class Button extends Widget {
 
         setHitbox();
     }
+
     public Button(String name, Screen link) {
         this(name, link, Color.BLACK, Color.WHITE);
     }

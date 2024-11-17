@@ -19,7 +19,7 @@ public class Collectable extends Element {
     }
 
     public Collectable(CollectableType type) {
-        super( type.getImage() );
+        super(type.getImage());
     }
 
 }

@@ -47,6 +47,7 @@ public class Layout {
         }
         return splitList(widgets, columnCount);
     }
+
     private List<List<Widget>> getRows() {
         List<List<Widget>> columns = getColumns();
 
@@ -80,6 +81,7 @@ public class Layout {
         int totalWidth = getColumns().size() * widgetWidth;
         return (int) ((columnIndex + 0.5) * widgetWidth) + (Screen.width - totalWidth) / 2;
     }
+
     private int getY(int rowIndex) {
         int widgetHeight = Widget.height + verticalGap;
         int totalHeight = getRows().size() * widgetHeight;

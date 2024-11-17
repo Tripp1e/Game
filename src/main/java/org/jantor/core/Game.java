@@ -16,9 +16,9 @@ public class Game extends Screen {
 
         LevelBuilder levelBuilder = LevelBuilder.createLevel(25, 17);
         levelBuilder.setBlock(1, 1, "stone")
-                    .setBlock(2, 1, "grass")
-                    .setBlock(5, 5, "dirt")
-                    .setBlock(6, 6, "player")
+                .setBlock(2, 1, "grass")
+                .setBlock(5, 5, "dirt")
+                .setBlock(6, 6, "player")
                 .setRow(14, "dirt");
         String[][] generatedLevel = levelBuilder.build();
 
@@ -42,6 +42,6 @@ public class Game extends Screen {
     private void loadOptions() {
 //        Layout layout = new Layout(buttons, 10, 10, 0, 0, 0, 250);
 //        layout.addTo(this);
-        addObject(buttons[0], getHeight()/2, getHeight()/2);
+        addObject(buttons[0], getHeight() / 2, getHeight() / 2);
     }
 }

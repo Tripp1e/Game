@@ -21,7 +21,9 @@ public class Entity extends Element {
 
         final String type;
 
-        EntityImage(String type) { this.type = type; }
+        EntityImage(String type) {
+            this.type = type;
+        }
 
         private String filePath() {
             return "player/" + name().toLowerCase() + "." + type;
@@ -30,9 +32,11 @@ public class Entity extends Element {
         private GifImage getGif() {
             return new GifImage(filePath());
         }
+
         public GreenfootImage getCurrentImage() {
             return getGif().getCurrentImage();
         }
+
         public GreenfootImage getCurrentImageMirrored() {
             return getGif().getCurrentImage().mirror();
         }
@@ -44,6 +48,7 @@ public class Entity extends Element {
         this.speed = speed;
         this.movement = movement;
     }
+
     public Entity(Movement movement) {
         this(movement, 10);
     }

@@ -28,7 +28,7 @@ public class Block extends Element {
     }
 
     public Block(BlockType type) {
-        super( type.getImage() );
+        super(type.getImage());
     }
 
 }

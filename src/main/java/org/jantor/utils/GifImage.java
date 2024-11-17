@@ -1,11 +1,12 @@
 package org.jantor.utils;
 
-import greenfoot.Color;
+import greenfoot.*;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+
 
 public class GifImage {
     private GreenfootImage[] images;
@@ -14,45 +15,45 @@ public class GifImage {
     private long time;
     private final boolean pause;
 
+
     public GifImage(String file) {
         pause = false;
-        if(file.toLowerCase().endsWith(".gif")) {
+        if (file.toLowerCase().endsWith(".gif")) {
             loadImages(file);
-        }
-        else {
-            images = new GreenfootImage[] {new GreenfootImage(file)};
-            delay = new int[] {1000};
+        } else {
+            images = new GreenfootImage[]{new GreenfootImage(file)};
+            delay = new int[]{1000};
             currentIndex = 0;
             time = System.currentTimeMillis();
         }
     }
 
-    public GreenfootImage getCurrentImage()
-    {
+
+    public GreenfootImage getCurrentImage() {
         long delta = System.currentTimeMillis() - time;
 
         while (delta >= delay[currentIndex] && !pause) {
             delta -= delay[currentIndex];
             time += delay[currentIndex];
-            currentIndex = (currentIndex+1) % images.length;
+            currentIndex = (currentIndex + 1) % images.length;
         }
         return images[currentIndex];
     }
+
 
     private void loadImages(String file) {
         GifDecoder decode = new GifDecoder();
         decode.read(file);
         int numFrames = decode.getFrameCount();
-        if(numFrames>0) {
+        if (numFrames > 0) {
             images = new GreenfootImage[numFrames];
             delay = new int[numFrames];
-        }
-        else {
+        } else {
             images = new GreenfootImage[1];
             images[0] = new GreenfootImage(1, 1);
         }
 
-        for (int i=0 ; i<numFrames ; i++) {
+        for (int i = 0; i < numFrames; i++) {
             GreenfootImage image = new GreenfootImage(decode.getFrame(i).getWidth(), decode.getFrame(i).getHeight());
             image.drawImage(decode.getFrame(i), 0, 0);
             delay[i] = decode.getDelay(i);
@@ -61,14 +62,14 @@ public class GifImage {
         time = System.currentTimeMillis();
     }
 
+
     private static class Rectangle {
         public int x;
         public int y;
         public int width;
         public int height;
 
-        public Rectangle(int x, int y, int width, int height)
-        {
+        public Rectangle(int x, int y, int width, int height) {
             this.x = x;
             this.y = y;
             this.width = width;
@@ -76,42 +77,80 @@ public class GifImage {
         }
     }
 
+
     private static class GifDecoder {
+
         public static final int STATUS_OK = 0;
 
+
         public static final int STATUS_FORMAT_ERROR = 1;
+
+
         public static final int STATUS_OPEN_ERROR = 2;
+
         private BufferedInputStream in;
+
         private int status;
+
         private int width;
+
         private int height;
-        private boolean colorTableGlobalFlag;
-        private int colorTableGlobalSize;
-        private int[] colorTableGlobal;
-        private int[] colorTableLocal;
-        private int[] colorTableActive;
+
+        private boolean gctFlag;
+
+        private int gctSize;
+
+        private int[] gct;
+
+        private int[] lct;
+
+        private int[] act;
+
         private int bgIndex;
+
         private Color bgColor;
+
         private Color lastBgColor;
+
         private boolean interlace;
+
         private int ix, iy, iw, ih;
+
         private Rectangle lastRect;
+
         private GreenfootImage image;
+
         private GreenfootImage lastImage;
+
         private final byte[] block = new byte[256];
+
         private int blockSize = 0;
+
         private int dispose = 0;
+
         private int lastDispose = 0;
+
         private boolean transparency = false;
+
         private int delay = 0;
+
         private int transIndex;
+
         private static final int MaxStackSize = 4096;
+
+
         private short[] prefix;
+
         private byte[] suffix;
+
         private byte[] pixelStack;
+
         private byte[] pixels;
+
         private ArrayList<GifFrame> frames;
+
         private int frameCount;
+
 
         private static class GifFrame {
             public GifFrame(GreenfootImage im, int del) {
@@ -124,12 +163,14 @@ public class GifImage {
             private final int delay;
         }
 
+
         private Color colorFromInt(int rgb) {
             int r = (rgb & 0xFF0000) >> 16;
             int g = (rgb & 0xFF00) >> 8;
             int b = (rgb & 0xFF);
-            return new Color(r,g,b);
+            return new Color(r, g, b);
         }
+
 
         public int getDelay(int n) {
 
@@ -140,9 +181,11 @@ public class GifImage {
             return delay;
         }
 
+
         public int getFrameCount() {
             return frameCount;
         }
+
 
         protected void setPixels() {
 
@@ -162,7 +205,6 @@ public class GifImage {
                     image.drawImage(lastImage, 0, 0);
 
 
-
                     if (lastDispose == 2) {
 
                         Color c;
@@ -171,16 +213,15 @@ public class GifImage {
                         } else {
                             c = lastBgColor;
                         }
-                        for (int x = 0; x < lastRect.width; x++)
-                        {
-                            for (int y = 0; y < lastRect.height; y++)
-                            {
+                        for (int x = 0; x < lastRect.width; x++) {
+                            for (int y = 0; y < lastRect.height; y++) {
                                 image.setColorAt(lastRect.x + x, lastRect.y + y, c);
                             }
                         }
                     }
                 }
             }
+
             int pass = 1;
             int inc = 8;
             int iline = 0;
@@ -212,7 +253,7 @@ public class GifImage {
 
                     for (int dx = ix; dx < dlim; dx++) {
                         int index = ((int) pixels[sx++]) & 0xff;
-                        int c = colorTableActive[index];
+                        int c = act[index];
                         if (c != 0) {
                             image.setColorAt(dx, line, colorFromInt(c));
                         }
@@ -221,6 +262,7 @@ public class GifImage {
             }
         }
 
+
         public GreenfootImage getFrame(int n) {
             GreenfootImage im = null;
             if ((n >= 0) && (n < frameCount)) {
@@ -228,6 +270,7 @@ public class GifImage {
             }
             return im;
         }
+
 
         public int read(BufferedInputStream is) {
             init();
@@ -251,6 +294,7 @@ public class GifImage {
             return status;
         }
 
+
         public void read(String name) {
             status = STATUS_OK;
             InputStream resource = this.getClass().getResourceAsStream(name);
@@ -265,6 +309,7 @@ public class GifImage {
             status = read(in);
 
         }
+
 
         protected void decodeImageData() {
             int NullCode = -1;
@@ -282,7 +327,6 @@ public class GifImage {
                 pixelStack = new byte[MaxStackSize + 1];
 
 
-
             data_size = read();
             clear = 1 << data_size;
             end_of_information = clear + 1;
@@ -294,9 +338,11 @@ public class GifImage {
                 prefix[code] = 0;
                 suffix[code] = (byte) code;
             }
+
+
             datum = bits = count = first = top = pi = bi = 0;
 
-            for (i = 0; i < npix;) {
+            for (i = 0; i < npix; ) {
                 if (top == 0) {
                     if (bits < code_size) {
 
@@ -314,10 +360,10 @@ public class GifImage {
                         continue;
                     }
 
+
                     code = datum & code_mask;
                     datum >>= code_size;
                     bits -= code_size;
-
 
 
                     if ((code > available) || (code == end_of_information))
@@ -348,7 +394,6 @@ public class GifImage {
                     first = ((int) suffix[code]) & 0xff;
 
 
-
                     if (available >= MaxStackSize)
                         break;
                     pixelStack[top++] = (byte) first;
@@ -363,7 +408,6 @@ public class GifImage {
                 }
 
 
-
                 top--;
                 pixels[pi++] = pixelStack[top];
                 i++;
@@ -375,17 +419,20 @@ public class GifImage {
 
         }
 
+
         protected boolean err() {
             return status != STATUS_OK;
         }
+
 
         protected void init() {
             status = STATUS_OK;
             frameCount = 0;
             frames = new ArrayList<>();
-            colorTableGlobal = null;
-            colorTableLocal = null;
+            gct = null;
+            lct = null;
         }
+
 
         protected int read() {
             int curByte = 0;
@@ -396,6 +443,7 @@ public class GifImage {
             }
             return curByte;
         }
+
 
         protected int readBlock() {
             blockSize = read();
@@ -418,6 +466,7 @@ public class GifImage {
             }
             return n;
         }
+
 
         protected int[] readColorTable(int ncolors) {
             int nbytes = 3 * ncolors;
@@ -443,6 +492,7 @@ public class GifImage {
             }
             return tab;
         }
+
 
         protected void readContents() {
 
@@ -518,11 +568,12 @@ public class GifImage {
             }
 
             readLSD();
-            if (colorTableGlobalFlag && !err()) {
-                colorTableGlobal = readColorTable(colorTableGlobalSize);
-                bgColor = colorFromInt(colorTableGlobal[bgIndex]);
+            if (gctFlag && !err()) {
+                gct = readColorTable(gctSize);
+                bgColor = colorFromInt(gct[bgIndex]);
             }
         }
+
 
         protected void readImage() {
             ix = readShort();
@@ -533,23 +584,25 @@ public class GifImage {
             int packed = read();
             boolean lctFlag = (packed & 0x80) != 0;
             interlace = (packed & 0x40) != 0;
+
+
             int lctSize = 2 << (packed & 7);
 
             if (lctFlag) {
-                colorTableLocal = readColorTable(lctSize);
-                colorTableActive = colorTableLocal;
+                lct = readColorTable(lctSize);
+                act = lct;
             } else {
-                colorTableActive = colorTableGlobal;
+                act = gct;
                 if (bgIndex == transIndex)
                     bgColor = colorFromInt(0);
             }
             int save = 0;
             if (transparency) {
-                save = colorTableActive[transIndex];
-                colorTableActive[transIndex] = 0;
+                save = act[transIndex];
+                act[transIndex] = 0;
             }
 
-            if (colorTableActive == null) {
+            if (act == null) {
                 status = STATUS_FORMAT_ERROR;
             }
 
@@ -564,7 +617,6 @@ public class GifImage {
 
             frameCount++;
 
-
             image = new GreenfootImage(width, height);
 
             setPixels();
@@ -572,26 +624,28 @@ public class GifImage {
             frames.add(new GifFrame(image, delay));
 
             if (transparency) {
-                colorTableActive[transIndex] = save;
+                act[transIndex] = save;
             }
             resetFrame();
 
         }
 
+
         protected void readLSD() {
+
             width = readShort();
             height = readShort();
 
-
             int packed = read();
-            colorTableGlobalFlag = (packed & 0x80) != 0;
+            gctFlag = (packed & 0x80) != 0;
 
-            colorTableGlobalSize = 2 << (packed & 7);
+
+            gctSize = 2 << (packed & 7);
 
             bgIndex = read();
-
             read();
         }
+
 
         protected void readNetscapeExt() {
             do {
@@ -599,18 +653,21 @@ public class GifImage {
             } while ((blockSize > 0) && !err());
         }
 
+
         protected int readShort() {
 
             return read() | (read() << 8);
         }
+
 
         protected void resetFrame() {
             lastDispose = dispose;
             lastRect = new Rectangle(ix, iy, iw, ih);
             lastImage = image;
             lastBgColor = bgColor;
-            colorTableLocal = null;
+            lct = null;
         }
+
 
         protected void skip() {
             do {

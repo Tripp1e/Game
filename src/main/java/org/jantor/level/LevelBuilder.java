@@ -16,7 +16,8 @@ public class LevelBuilder {
         blocks[y][x] = blockType;
         return this;
     }
-    public LevelBuilder setRow( int row, String blockType) {
+
+    public LevelBuilder setRow(int row, String blockType) {
         Arrays.fill(blocks[row], blockType);
         return this;
     }
