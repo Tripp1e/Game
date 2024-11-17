@@ -1,54 +1,36 @@
 package org.jantor.level;
 
-import org.jantor.image.GreenfootImage;
-import org.jantor.level.element.Element;
-import org.jantor.level.element.block.Block;
-import org.jantor.level.element.block.Dirt;
-import org.jantor.level.element.block.Grass;
-import org.jantor.level.element.block.Sand;
-import org.jantor.level.element.block.Stone;
-import org.jantor.level.element.entity.Player;
-import org.jantor.screen.Screen;
+import org.jantor.elements.Block;
+import org.jantor.utils.GreenfootImage;
+import org.jantor.elements.Element;
+import org.jantor.elements.Player;
+import org.jantor.screens.Screen;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.io.IOException;
+import org.jantor.elements.Block.BlockType;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.BufferedReader;
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
+
+import static org.jantor.utils.JsonReader.getJsonObject;
 
 public class Level extends Screen {
-    public Player player;
     private int width;
     private int height;
     private String[][] elements;
-    private static final Map<String, Class<? extends Element>> BLOCK_MAP = new HashMap<>();
-
-    static {
-        BLOCK_MAP.put("stone", Stone.class);
-        BLOCK_MAP.put("grass", Grass.class);
-        BLOCK_MAP.put("dirt", Dirt.class);
-        BLOCK_MAP.put("player", Player.class);
-        BLOCK_MAP.put("sand", Sand.class);
-    }
+    private int[] playerCoords;
+    public Player player;
 
     public Level(String filename) {
         super();
         setPaintOrder(Player.class);
-        loadLevel("/levels/" + filename);
-        createBlocks();
+        loadLevel(filename);
+        configureBlocks();
+        configurePlayer();
         configureBackground();
     }
 
-    private void configureBackground() {
-        GreenfootImage background = new GreenfootImage("resources/image/level/background.png");
-        setBackground(background);
-    }
-
     private void loadLevel(String filename) {
+        filename = "/levels/" + filename + ".json";
         try {
             InputStream inputStream = getClass().getResourceAsStream(filename);
 
@@ -61,6 +43,12 @@ public class Level extends Screen {
             width = levelJson.getInt("width");
             height = levelJson.getInt("height");
 
+            playerCoords = new int[2];
+            JSONArray playerCoordsJson = levelJson.getJSONArray("player");
+            for (int i = 0; i < playerCoordsJson.length(); i++) {
+                playerCoords[i] = playerCoordsJson.getInt(i);
+            }
+
             elements = new String[height][width];
 
             JSONArray blocksJson = levelJson.getJSONArray("blocks");
@@ -71,7 +59,7 @@ public class Level extends Screen {
                 JSONArray row = blocksJson.getJSONArray(y);
 
                 for (int x = 0; x < width; x++) {
-                    elements[y][x] = row.getString(x).replace(" ", "");
+                    elements[y][x] = row.getString(x).replace(" ", "").toUpperCase();
                 }
             }
         } catch (Exception e) {
@@ -79,36 +67,28 @@ public class Level extends Screen {
         }
     }
 
-    private static JSONObject getJsonObject(InputStream inputStream) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
-        StringBuilder jsonContent = new StringBuilder();
-        String line;
-
-        while ((line = reader.readLine()) != null) {
-            jsonContent.append(line);
-        }
-
-        return new JSONObject(jsonContent.toString());
-    }
-
-    public void createBlocks() {
+    public void configureBlocks() {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 String blockTypeString = elements[y][x];
-                Class<? extends Element> blockClass = BLOCK_MAP.get(blockTypeString);
 
-                if (blockClass != null) {
-                    try {
-                        Element element = blockClass.getDeclaredConstructor().newInstance();
-                        if (element instanceof Player) {
-                            this.player = (Player) element;
-                        }
-                        element.addTo(this, x, y);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
+                BlockType blockType = BlockType.getByString(blockTypeString);
+
+                if (blockType == null) continue;
+                Element element = new Block(blockType);
+
+                element.addTo(this, x, y);
             }
         }
+    }
+
+    private void configurePlayer() {
+        player = new Player();
+        player.addTo(this, playerCoords[0], playerCoords[1]);
+    }
+
+    private void configureBackground() {
+        GreenfootImage background = new GreenfootImage("images/levels/background.png");
+        setBackground(background);
     }
 }
