@@ -30,3 +30,10 @@
 
 > [!CAUTION]
 >- **Level Design**
+
+
+How to setup ?
+---
+
+1. Clone Project
+2. Open in IntelliJ

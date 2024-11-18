@@ -1,7 +1,6 @@
 package org.jantor.elements.movement;
 
 import org.jantor.elements.Player;
-
 import java.util.Arrays;
 
 public class PlayerMovement extends Movement {
@@ -19,7 +18,7 @@ public class PlayerMovement extends Movement {
         });
 
         if (MovementDirection.UP.isPressed() && onGround) {
-            verticalSpeed = -jumpStrength;
+            verticalMomentum = -jumpStrength;
             onGround = false;
         }
 

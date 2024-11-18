@@ -14,7 +14,6 @@ public class LevelSerializer {
         jsonObject.put("width", width);
         jsonObject.put("height", height);
 
-        // Instead of creating a JSONArray here, we'll just keep the levelData for formatting later.
         jsonObject.put("blocks", levelData);
 
         return jsonObject;
@@ -23,14 +22,30 @@ public class LevelSerializer {
     public static void saveToFile(String[][] levelData, String filename) {
         JSONObject levelJson = toJSON(levelData);
 
-        // Custom formatting for blocks
+        StringBuilder formattedBlocks = getStringBuilder(levelData);
+
+        String jsonOutput = String.format("{\n  \"width\": %d,\n  \"height\": %d,\n%s\n}",
+                levelJson.getInt("width"),
+                levelJson.getInt("height"),
+                formattedBlocks);
+
+        try (FileWriter fileWriter = new FileWriter("resources/levels/" + filename)) {
+            fileWriter.write(jsonOutput);
+            System.out.println("Level saved to " + filename);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("Error saving level to file: " + filename);
+        }
+    }
+
+    private static StringBuilder getStringBuilder(String[][] levelData) {
         StringBuilder formattedBlocks = new StringBuilder();
         formattedBlocks.append("  \"blocks\": [\n");
 
         for (int i = 0; i < levelData.length; i++) {
             formattedBlocks.append("    [");
             for (int j = 0; j < levelData[i].length; j++) {
-                formattedBlocks.append(String.format("\"%-8s\"", levelData[i][j])); // Adjust spacing here
+                formattedBlocks.append(String.format("\"%-8s\"", levelData[i][j]));
                 if (j < levelData[i].length - 1) {
                     formattedBlocks.append(", ");
                 }
@@ -43,20 +58,6 @@ public class LevelSerializer {
             }
         }
         formattedBlocks.append("  ]");
-
-        // Combine all parts of the JSON object into a string
-        String jsonOutput = String.format("{\n  \"width\": %d,\n  \"height\": %d,\n%s\n}",
-                levelJson.getInt("width"),
-                levelJson.getInt("height"),
-                formattedBlocks);
-
-        // Write the formatted string to the file
-        try (FileWriter fileWriter = new FileWriter("resources/levels/" + filename)) {
-            fileWriter.write(jsonOutput);
-            System.out.println("Level saved to " + filename);
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("Error saving level to file: " + filename);
-        }
+        return formattedBlocks;
     }
 }

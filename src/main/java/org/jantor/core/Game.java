@@ -27,21 +27,17 @@ public class Game extends Screen {
 
     private final Button[] buttons = {
             new Button("One", new Level("one")),
-            //new Button("Two", new Level("two")),
             new Clickable("LevelBuilder", runnable)
     };
 
     public Game() {
         super();
 
-
         loadOptions();
         act();
     }
 
     private void loadOptions() {
-//        Layout layout = new Layout(buttons, 10, 10, 0, 0, 0, 250);
-//        layout.addTo(this);
         addObject(buttons[0], getHeight() / 2, getHeight() / 2);
     }
 }

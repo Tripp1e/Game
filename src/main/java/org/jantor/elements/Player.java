@@ -7,7 +7,7 @@ public class Player extends Entity {
     public int score = 0;
 
     public Player() {
-        super(null);
+        super(null, 5);
         this.movement = new PlayerMovement(this);
     }
 

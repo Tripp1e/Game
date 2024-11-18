@@ -4,8 +4,6 @@ public class Vector2D {
     public int x;
     public int y;
 
-    public static final Vector2D zeroVector = new Vector2D(0, 0);
-
     public Vector2D(int x, int y) {
         this.x = x;
         this.y = y;
