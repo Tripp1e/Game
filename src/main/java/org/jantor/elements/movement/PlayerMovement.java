@@ -11,7 +11,8 @@ public class PlayerMovement extends Movement {
 
     @Override
     public void act() {
-        lastDirection.add(currentDirection);
+        latestDirection.add(currentDirection);
+        lastDirection.copy(currentDirection);
         currentDirection.toZero();
         Arrays.stream(MovementDirection.values()).forEach(direction -> {
             if (direction.isPressed()) currentDirection.add(direction.vector);

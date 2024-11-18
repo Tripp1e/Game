@@ -28,9 +28,11 @@ public abstract class Movement {
 
     private final Entity entity;
     protected Vector2D currentDirection;
+    protected Vector2D latestDirection;
     protected Vector2D lastDirection;
 
     protected boolean onGround = false;
+    private boolean hasJumped = false;
     protected int verticalMomentum = 0;
     int gravity = 1;
     int jumpStrength = 20;
@@ -40,12 +42,14 @@ public abstract class Movement {
         this.entity = entity;
         this.currentDirection = new Vector2D(0, 0);
         this.lastDirection = new Vector2D(0, 0);
+        this.latestDirection = new Vector2D(0, 0);
     }
 
     public void act() {
         entity.setImage(isFacingLeft() ? image().getCurrentImage() : image().getCurrentImageMirrored());
         applyGravity();
         updateLocation();
+        applySounds();
     }
 
     private void updateLocation() {
@@ -60,7 +64,7 @@ public abstract class Movement {
 
     protected void applyGravity() {
         if (onGround) {
-            onGround = cantMoveTo(0, 1);  // Check if the entity is still on the ground
+            onGround = cantMoveTo(0, 1);
             if (onGround) return;
         }
 
@@ -77,6 +81,13 @@ public abstract class Movement {
         } else {
             onGround = false;
         }
+    }
+
+    private void applySounds() {
+        boolean playJumped = currentDirection.y == -1 && lastDirection.y == 0 && hasJumped;
+        if (playJumped) Greenfoot.playSound("sounds/jumped.wav");
+        hasJumped = onGround;
+
     }
 
 
@@ -96,14 +107,14 @@ public abstract class Movement {
     }
 
     private EntityImage image() {
-        if (!onGround) return EntityImage.JUMPING;
-        if (currentDirection.y == 1) return EntityImage.CROUCHING;
-        if (currentDirection == Constants.zeroVector) return EntityImage.STANDING;
+        if (!onGround)                                      return EntityImage.JUMPING;
+        if (currentDirection.y == 1)                        return EntityImage.CROUCHING;
+        if (currentDirection.equals(Constants.zeroVector))  return EntityImage.STANDING;
         return EntityImage.WALKING;
     }
 
     private boolean isFacingLeft() {
-        return lastDirection.x == -1;
+        return latestDirection.x == -1;
     }
 
 }

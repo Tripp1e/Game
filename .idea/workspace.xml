@@ -5,31 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d2ce627-cf0d-4759-8836-297ed97272cc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/jantor/constants/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReadMe.md" beforeDir="false" afterPath="$PROJECT_DIR$/ReadMe.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/assets/images/blocks/air.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/assets/images/blocks/dirt.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/assets/images/blocks/dirt.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/assets/images/blocks/grass.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/assets/images/blocks/grass.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/assets/images/blocks/sand.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/assets/images/blocks/sand.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/assets/images/blocks/stone.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/assets/images/blocks/stone.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/core/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/core/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/elements/Collectable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/elements/Collectable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/elements/Element.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/elements/Element.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/assets/images/player/walking1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/assets/images/player/walking2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/assets/images/player/walking3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/assets/images/player/walking4.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/elements/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/elements/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/elements/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/elements/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/elements/movement/Movement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/elements/movement/Movement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/elements/movement/PlayerMovement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/elements/movement/PlayerMovement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/level/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/level/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/level/LevelSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/level/LevelSerializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/screens/Layout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/screens/Layout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/ui/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/ui/Button.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/ui/Widget.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/ui/Widget.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/utils/GifImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/utils/GifImage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/utils/GreenfootImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/utils/GreenfootImage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/utils/Vector2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/utils/Vector2D.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,6 +59,12 @@
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="application" type="c8890929:TasksNode$1" />
               </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Game" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
             </expand>
             <select />
           </tree_state>
@@ -73,26 +72,36 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Trivaris"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Trivaris&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Tripp1e/Game.git",
-    "accountId": "e54743e6-2e42-4636-93c5-ef563c5eec32"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Tripp1e/Game.git&quot;,
+    &quot;accountId&quot;: &quot;e54743e6-2e42-4636-93c5-ef563c5eec32&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="2p1q4v12i23Sa1alBZjLPrYnfOh" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="false" />
@@ -101,8 +110,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.Game [run].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "torben",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -153,7 +168,8 @@
       <option name="presentableId" value="Default" />
       <updated>1731943742859</updated>
       <workItem from="1731943744417" duration="37000" />
-      <workItem from="1731943787041" duration="14000" />
+      <workItem from="1731943787041" duration="1357000" />
+      <workItem from="1731961307459" duration="5736000" />
     </task>
     <servers />
   </component>
