@@ -1,8 +1,8 @@
 package org.jantor.elements;
 
 import greenfoot.Actor;
-import org.jantor.utils.GifImage;
 import org.jantor.elements.movement.Movement;
+import org.jantor.utils.GifImage;
 import org.jantor.utils.GreenfootImage;
 
 public class Entity extends Element {
@@ -18,30 +18,28 @@ public class Entity extends Element {
         STANDING("png");
 
         final String type;
+        final GifImage gif;
 
         EntityImage(String type) {
             this.type = type;
+            this.gif = new GifImage(filePath());
         }
 
         private String filePath() {
             return "player/" + name().toLowerCase() + "." + type;
         }
 
-        private GifImage getGif() {
-            return new GifImage(filePath());
-        }
-
         public GreenfootImage getCurrentImage() {
-            return getGif().getCurrentImage();
+            return gif.getCurrentImage();
         }
 
         public GreenfootImage getCurrentImageMirrored() {
-            return getGif().getCurrentImage().mirror();
+            return gif.getCurrentImage().mirror();
         }
     }
 
     public Entity(Movement movement, int speed) {
-        super(EntityImage.WALKING.getGif().getCurrentImage());
+        super(EntityImage.WALKING.gif.getCurrentImage());
 
         this.speed = speed;
         this.movement = movement;

@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-
 public class GifImage {
     private GreenfootImage[] images;
     private int[] delay;
@@ -317,12 +316,9 @@ public class GifImage {
             if ((pixels == null) || (pixels.length < npix)) {
                 pixels = new byte[npix];
             }
-            if (prefix == null)
-                prefix = new short[MaxStackSize];
-            if (suffix == null)
-                suffix = new byte[MaxStackSize];
-            if (pixelStack == null)
-                pixelStack = new byte[MaxStackSize + 1];
+            if (prefix == null) prefix = new short[MaxStackSize];
+            if (suffix == null) suffix = new byte[MaxStackSize];
+            if (pixelStack == null) pixelStack = new byte[MaxStackSize + 1];
 
 
             data_size = read();
@@ -347,8 +343,7 @@ public class GifImage {
                         if (count == 0) {
 
                             count = readBlock();
-                            if (count <= 0)
-                                break;
+                            if (count <= 0) break;
                             bi = 0;
                         }
                         datum += (((int) block[bi]) & 0xff) << bits;
@@ -364,8 +359,7 @@ public class GifImage {
                     bits -= code_size;
 
 
-                    if ((code > available) || (code == end_of_information))
-                        break;
+                    if ((code > available) || (code == end_of_information)) break;
                     if (code == clear) {
 
                         code_size = data_size + 1;
@@ -392,8 +386,7 @@ public class GifImage {
                     first = ((int) suffix[code]) & 0xff;
 
 
-                    if (available >= MaxStackSize)
-                        break;
+                    if (available >= MaxStackSize) break;
                     pixelStack[top++] = (byte) first;
                     prefix[available] = (short) old_code;
                     suffix[available] = (byte) first;
@@ -451,8 +444,7 @@ public class GifImage {
                     int count;
                     while (n < blockSize) {
                         count = in.read(block, n, blockSize - n);
-                        if (count == -1)
-                            break;
+                        if (count == -1) break;
                         n += count;
                     }
                 } catch (IOException ignored) {
@@ -518,8 +510,7 @@ public class GifImage {
                                 }
                                 if (app.toString().equals("NETSCAPE2.0")) {
                                     readNetscapeExt();
-                                } else
-                                    skip();
+                                } else skip();
                                 break;
 
                             default:
@@ -591,8 +582,7 @@ public class GifImage {
                 act = lct;
             } else {
                 act = gct;
-                if (bgIndex == transIndex)
-                    bgColor = colorFromInt(0);
+                if (bgIndex == transIndex) bgColor = colorFromInt(0);
             }
             int save = 0;
             if (transparency) {
@@ -604,14 +594,12 @@ public class GifImage {
                 status = STATUS_FORMAT_ERROR;
             }
 
-            if (err())
-                return;
+            if (err()) return;
 
             decodeImageData();
             skip();
 
-            if (err())
-                return;
+            if (err()) return;
 
             frameCount++;
 

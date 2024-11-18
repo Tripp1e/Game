@@ -7,6 +7,7 @@
 >- **Gravity**
 >- **Blocks to Enum**
 >- **Level Loading**
+>- **Gif Image Fixing**
 
 💅 Need Polishing
 ---
@@ -21,7 +22,6 @@
 ---
 
 > [!WARNING]
->- **Gif Image Fixing**
 >- **Collectables**
 >- **Scrolling Background**
 
