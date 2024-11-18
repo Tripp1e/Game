@@ -1,6 +1,7 @@
 package org.jantor.screens;
 
 import greenfoot.World;
+import org.jantor.constants.Constants;
 import org.jantor.ui.Widget;
 
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class Layout {
 
     private List<List<Widget>> getColumns() {
         int columnCount = 1;
-        int columnWidth = Widget.width + horizontalGap;
+        int columnWidth = Constants.elementWidth + horizontalGap;
         while (columnWidth * columnCount <= usableWidth) {
             columnCount++;
         }
@@ -77,13 +78,13 @@ public class Layout {
     }
 
     private int getX(int columnIndex) {
-        int widgetWidth = Widget.width + horizontalGap;
+        int widgetWidth = Constants.elementWidth + horizontalGap;
         int totalWidth = getColumns().size() * widgetWidth;
         return (int) ((columnIndex + 0.5) * widgetWidth) + (Screen.width - totalWidth) / 2;
     }
 
     private int getY(int rowIndex) {
-        int widgetHeight = Widget.height + verticalGap;
+        int widgetHeight = Constants.elementWidth + verticalGap;
         int totalHeight = getRows().size() * widgetHeight;
         return (int) ((rowIndex + 0.5) * widgetHeight) + (Screen.height - totalHeight) / 2;
     }

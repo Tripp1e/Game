@@ -4,13 +4,11 @@ import greenfoot.Actor;
 import org.jantor.utils.GifImage;
 import org.jantor.elements.movement.Movement;
 import org.jantor.utils.GreenfootImage;
-import org.jantor.utils.Vector2D;
 
 public class Entity extends Element {
 
     Movement movement;
     final public int speed;
-
     public int score = 0;
 
     public enum EntityImage {

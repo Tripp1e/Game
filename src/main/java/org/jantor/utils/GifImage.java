@@ -82,9 +82,7 @@ public class GifImage {
 
         public static final int STATUS_OK = 0;
 
-
         public static final int STATUS_FORMAT_ERROR = 1;
-
 
         public static final int STATUS_OPEN_ERROR = 2;
 

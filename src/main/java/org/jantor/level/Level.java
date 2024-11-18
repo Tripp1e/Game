@@ -10,7 +10,6 @@ import org.json.JSONObject;
 import org.jantor.elements.Block.BlockType;
 
 import java.io.InputStream;
-import java.util.Arrays;
 
 import static org.jantor.utils.JsonReader.getJsonObject;
 
@@ -69,16 +68,19 @@ public class Level extends Screen {
     }
 
     public void configureBlocks() {
+        int z = 0;
+
         for (int y = 0; y < height; y++) {
+            z = height - y - 1;
             for (int x = 0; x < width; x++) {
-                String blockTypeString = elements[y][x];
+                String blockTypeString = elements[z][x];
 
                 BlockType blockType = BlockType.getByString(blockTypeString);
 
                 if (blockType == null) continue;
                 Element element = new Block(blockType);
 
-                element.addTo(this, x, y);
+                element.addTo(this, x, z);
             }
         }
     }

@@ -1,6 +1,7 @@
 package org.jantor.elements.movement;
 
 import greenfoot.Greenfoot;
+import org.jantor.constants.Constants;
 import org.jantor.elements.Block;
 import org.jantor.elements.Entity;
 import org.jantor.utils.Vector2D;
@@ -30,7 +31,7 @@ public abstract class Movement {
     protected Vector2D lastDirection;
 
     protected boolean onGround = false;
-    protected int verticalSpeed = 0;
+    protected int verticalMomentum = 0;
     int gravity = 1;
     int jumpStrength = 20;
 
@@ -49,7 +50,7 @@ public abstract class Movement {
 
     private void updateLocation() {
         int dx = entity.speed * currentDirection.x;
-        int dy = onGround ? jumpStrength * currentDirection.y : verticalSpeed;
+        int dy = onGround ? jumpStrength * currentDirection.y : verticalMomentum;
 
         if (cantMoveTo(dx, 0)) dx = 0;
         if (cantMoveTo(0, dy)) dy = 0;
@@ -63,16 +64,16 @@ public abstract class Movement {
             if (onGround) return;
         }
 
-        verticalSpeed += gravity;
+        verticalMomentum += gravity;
 
-        if (cantMoveTo(0, verticalSpeed)) {
-            while (cantMoveTo(0, verticalSpeed) && verticalSpeed != 0) {
-                verticalSpeed--;
+        if (cantMoveTo(0, verticalMomentum)) {
+            while (cantMoveTo(0, verticalMomentum) && verticalMomentum != 0) {
+                verticalMomentum--;
             }
 
             onGround = cantMoveTo(0, 1);
 
-            verticalSpeed = 0;
+            verticalMomentum = 0;
         } else {
             onGround = false;
         }
@@ -97,7 +98,7 @@ public abstract class Movement {
     private EntityImage image() {
         if (!onGround) return EntityImage.JUMPING;
         if (currentDirection.y == 1) return EntityImage.CROUCHING;
-        if (currentDirection == Vector2D.zeroVector) return EntityImage.STANDING;
+        if (currentDirection == Constants.zeroVector) return EntityImage.STANDING;
         return EntityImage.WALKING;
     }
 

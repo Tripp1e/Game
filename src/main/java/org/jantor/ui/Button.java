@@ -2,8 +2,10 @@ package org.jantor.ui;
 
 import greenfoot.Color;
 import greenfoot.Greenfoot;
+import org.jantor.constants.Constants;
 import org.jantor.utils.GreenfootImage;
 import org.jantor.screens.Screen;
+import org.reactfx.util.LL;
 
 
 public class Button extends Widget {
@@ -26,11 +28,11 @@ public class Button extends Widget {
     }
 
     public void setHitbox() {
-        GreenfootImage button = new GreenfootImage(width, height);
-        button.drawRoundRect(15, width, height, color);
+        GreenfootImage button = new GreenfootImage(Constants.elementWidth, Constants.elementHeight);
+        button.drawRoundRect(15, Constants.elementWidth, Constants.elementHeight, color);
 
         button.setColor(fontColor);
-        button.drawString(name, width / 2, height / 2);
+        button.drawString(name, Constants.elementWidth / 2, Constants.elementHeight / 2);
 
         setImage(button);
     }
