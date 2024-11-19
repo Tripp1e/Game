@@ -26,7 +26,7 @@ public abstract class Movement {
 
     }
 
-    private final Entity entity;
+    protected final Entity entity;
     protected Vector2D currentDirection;
     protected Vector2D latestDirection;
     protected Vector2D lastDirection;
@@ -87,7 +87,6 @@ public abstract class Movement {
         boolean playJumped = currentDirection.y == -1 && lastDirection.y == 0 && hasJumped;
         if (playJumped) Greenfoot.playSound("sounds/jumped.wav");
         hasJumped = onGround;
-
     }
 
 

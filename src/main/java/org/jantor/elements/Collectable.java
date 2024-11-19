@@ -8,7 +8,7 @@ public class Collectable extends Element {
         COIN;
 
         private String filePath() {
-            return "images/blocks/" + name();
+            return "images/collectables/" + name().toLowerCase() + ".png";
         }
 
         public GreenfootImage getImage() {

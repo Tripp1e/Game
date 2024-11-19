@@ -2,6 +2,7 @@ package org.jantor.level;
 
 import org.jantor.constants.Constants;
 import org.jantor.elements.Block;
+import org.jantor.elements.Collectable;
 import org.jantor.elements.Border;
 import org.jantor.utils.GreenfootImage;
 import org.jantor.elements.Element;
@@ -20,8 +21,12 @@ public class Level extends Screen {
     private int width;
     private int height;
     private String[][] elements;
-    private int[] playerCoords;
+
     public Player player;
+    private int[] playerCoords;
+
+    private Collectable collectable;
+    private int[] collectableCoords;
 
     public Level(String filename) {
         super();
@@ -29,6 +34,7 @@ public class Level extends Screen {
         loadLevel(filename);
         configureBlocks();
         configurePlayer();
+        configureCollectable();
         configureBorders();
         configureBackground();
     }
@@ -51,6 +57,12 @@ public class Level extends Screen {
             JSONArray playerCoordsJson = levelJson.getJSONArray("player");
             for (int i = 0; i < playerCoordsJson.length(); i++) {
                 playerCoords[i] = playerCoordsJson.getInt(i);
+            }
+
+            collectableCoords = new int[2];
+            JSONArray collectableCoordsJson = levelJson.getJSONArray("collectable");
+            for (int i = 0; i < collectableCoordsJson.length(); i++) {
+                collectableCoords[i] = collectableCoordsJson.getInt(i);
             }
 
             elements = new String[height][width];
@@ -92,6 +104,11 @@ public class Level extends Screen {
     private void configurePlayer() {
         player = new Player();
         player.addTo(this, playerCoords[0], playerCoords[1]);
+    }
+
+    private void configureCollectable() {
+        collectable = new Collectable(Collectable.CollectableType.COIN);
+        collectable.addTo(this, collectableCoords[0], collectableCoords[1]);
     }
 
     private void configureBorders() {
