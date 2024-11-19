@@ -3,6 +3,7 @@ package org.jantor.screens;
 import greenfoot.World;
 import org.jantor.constants.Constants;
 import org.jantor.ui.Widget;
+import org.reactfx.util.LL;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +19,7 @@ public class Layout {
     private final Widget[] widgets;
 
     public Layout(Widget[] widgets, int verticalGap, int horizontalGap, int padLeft, int padRight, int padTop, int padBottom) {
-        this.usableWidth = Screen.width - (padLeft + padRight);
+        this.usableWidth = Constants.screenWidth - (padLeft + padRight);
 
         this.widgets = widgets;
 
@@ -80,13 +81,13 @@ public class Layout {
     private int getX(int columnIndex) {
         int widgetWidth = Constants.elementWidth + horizontalGap;
         int totalWidth = getColumns().size() * widgetWidth;
-        return (int) ((columnIndex + 0.5) * widgetWidth) + (Screen.width - totalWidth) / 2;
+        return (int) ((columnIndex + 0.5) * widgetWidth) + (Constants.screenWidth - totalWidth) / 2;
     }
 
     private int getY(int rowIndex) {
         int widgetHeight = Constants.elementWidth + verticalGap;
         int totalHeight = getRows().size() * widgetHeight;
-        return (int) ((rowIndex + 0.5) * widgetHeight) + (Screen.height - totalHeight) / 2;
+        return (int) ((rowIndex + 0.5) * widgetHeight) + (Constants.screenHeight - totalHeight) / 2;
     }
 
 

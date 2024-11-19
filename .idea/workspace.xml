@@ -5,25 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d2ce627-cf0d-4759-8836-297ed97272cc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/jantor/elements/Border.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/assets/images/blocks/air.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/assets/images/blocks/dirt.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/assets/images/blocks/dirt.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/assets/images/blocks/grass.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/assets/images/blocks/grass.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/assets/images/blocks/sand.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/assets/images/blocks/sand.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/assets/images/blocks/stone.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/assets/images/blocks/stone.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/assets/images/player/walking1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/assets/images/player/walking2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/assets/images/player/walking3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/assets/images/player/walking4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/elements/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/elements/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/elements/movement/Movement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/elements/movement/Movement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/elements/movement/PlayerMovement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/elements/movement/PlayerMovement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/utils/GifImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/utils/GifImage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/utils/GreenfootImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/utils/GreenfootImage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/utils/Vector2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/utils/Vector2D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/constants/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/level/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/level/Level.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/screens/Layout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/screens/Layout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/jantor/screens/Screen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jantor/screens/Screen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +101,7 @@
     "Gradle.Game [run].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "torben",
+    "git-widget-placeholder": "jannik",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",

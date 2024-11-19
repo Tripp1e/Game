@@ -3,14 +3,14 @@ package org.jantor.screens;
 import greenfoot.Color;
 import greenfoot.GreenfootImage;
 import greenfoot.World;
+import org.jantor.constants.Constants;
+import org.reactfx.util.LL;
 
 public class Screen extends World {
-    public static final int width = 1200;
-    public static final int height = 800;
     public static final Color backgroundColor = Color.WHITE;
 
     public Screen() {
-        super(width, height, 1);
+        super(Constants.screenWidth, Constants.screenHeight, 1);
     }
 
     void setBackground() {

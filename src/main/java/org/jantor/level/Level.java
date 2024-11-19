@@ -1,6 +1,8 @@
 package org.jantor.level;
 
+import org.jantor.constants.Constants;
 import org.jantor.elements.Block;
+import org.jantor.elements.Border;
 import org.jantor.utils.GreenfootImage;
 import org.jantor.elements.Element;
 import org.jantor.elements.Player;
@@ -8,6 +10,7 @@ import org.jantor.screens.Screen;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jantor.elements.Block.BlockType;
+import org.jantor.elements.Border.BorderDirection;
 
 import java.io.InputStream;
 
@@ -26,6 +29,7 @@ public class Level extends Screen {
         loadLevel(filename);
         configureBlocks();
         configurePlayer();
+        configureBorders();
         configureBackground();
     }
 
@@ -88,6 +92,14 @@ public class Level extends Screen {
     private void configurePlayer() {
         player = new Player();
         player.addTo(this, playerCoords[0], playerCoords[1]);
+    }
+
+    private void configureBorders() {
+        Border leftBorder = new Border(BorderDirection.LEFT);
+        Border rightBorder = new Border(BorderDirection.RIGHT);
+
+        leftBorder.addTo(this, Constants.screenWidth / 8, Constants.screenHeight/2);
+        rightBorder.addTo(this, Constants.screenWidth + Constants.screenWidth / 8, Constants.screenHeight/2);
     }
 
     private void configureBackground() {
