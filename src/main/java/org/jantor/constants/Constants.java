@@ -9,6 +9,9 @@ public class Constants {
     public static int elementXOffset = 10;
     public static int elementYOffset = 10;
 
+    public static final int screenWidth = 1200;
+    public static final int screenHeight = 800;
+
     public static final Vector2D zeroVector = new Vector2D(0, 0);
 
 }
