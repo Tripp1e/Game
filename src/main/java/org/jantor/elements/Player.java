@@ -12,8 +12,10 @@ public class Player extends Entity {
     }
 
     public void collect(Class<? extends Collectable> cls) {
-        if (isTouching(cls)) return;
+        if (!isTouching(cls)) return;
         score += 1;
+        System.out.println("Collecting " + cls.getSimpleName());
+        System.out.println("Score: " + score);
         super.removeTouching(cls);
     }
 }

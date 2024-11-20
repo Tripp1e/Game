@@ -1,5 +1,6 @@
 package org.jantor.elements.movement;
 
+import org.jantor.elements.Collectable;
 import org.jantor.elements.Player;
 import java.util.Arrays;
 
@@ -14,6 +15,9 @@ public class PlayerMovement extends Movement {
         latestDirection.add(currentDirection);
         lastDirection.copy(currentDirection);
         currentDirection.toZero();
+
+        ((Player) entity).collect(Collectable.class);
+
         Arrays.stream(MovementDirection.values()).forEach(direction -> {
             if (direction.isPressed()) currentDirection.add(direction.vector);
         });

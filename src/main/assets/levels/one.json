@@ -4,12 +4,12 @@
   "blocks": [
     ["air",   "air",   "air",   "air",   "air",   "air",    "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
     ["air",   "air",   "air",   "air",   "air",   "air",    "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
+    ["air",   "air",   "air",   "air",   "air",   "grass",    "grass",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
     ["air",   "air",   "air",   "air",   "air",   "air",    "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
     ["air",   "air",   "air",   "air",   "air",   "air",    "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
+    ["air",   "air",   "air",   "air",   "air",   "air",    "grass",   "grass",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
     ["air",   "air",   "air",   "air",   "air",   "air",    "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
-    ["air",   "air",   "air",   "air",   "air",   "air",    "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
-    ["air",   "air",   "air",   "air",   "air",   "air",    "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
-    ["air",   "air",   "air",   "air",   "air",   "air",    "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
+    ["air",   "air",   "stone",   "stone",   "air",   "air",    "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
     ["air",   "air",   "air",   "air",   "air",   "air",    "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
     ["air",   "air",   "air",   "air",   "air",   "air",    "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
     ["air",   "air",   "air",   "air",   "air",   "air",    "air",   "air",   "air",   "grass", "grass", "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
@@ -20,5 +20,6 @@
     ["stone", "stone", "stone", "stone", "stone", "stone",  "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone"],
     ["stone", "stone", "stone", "stone", "stone", "stone",  "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone"]
   ],
-  "player": [12, 0]
+  "player": [3, 3],
+  "collectable": [6, 6]
 }
