@@ -27,7 +27,7 @@ public abstract class Movement {
     }
 
     protected final Entity entity;
-    protected Vector2D currentDirection;
+    public Vector2D currentDirection;
     protected Vector2D latestDirection;
     protected Vector2D lastDirection;
 
