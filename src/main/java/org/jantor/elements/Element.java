@@ -15,4 +15,8 @@ public class Element extends Actor {
         world.addObject(this, x * Constants.elementWidth + Constants.elementXOffset, y * Constants.elementHeight - Constants.elementYOffset);
     }
 
+    @Override
+    public boolean isTouching(Class cls) {
+        return super.isTouching(cls);
+    }
 }

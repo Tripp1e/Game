@@ -1,13 +1,14 @@
 package org.jantor.elements;
 
 import greenfoot.Actor;
+import org.jantor.elements.movement.EntityMovement;
 import org.jantor.elements.movement.Movement;
 import org.jantor.utils.GifImage;
 import org.jantor.utils.GreenfootImage;
 
 public class Entity extends Element {
 
-    Movement movement;
+    public EntityMovement movement;
     final public int speed;
     public int score = 0;
 
@@ -38,15 +39,11 @@ public class Entity extends Element {
         }
     }
 
-    public Entity(Movement movement, int speed) {
+    public Entity(EntityMovement movement, int speed) {
         super(EntityImage.WALKING.gif.getCurrentImage());
 
         this.speed = speed;
         this.movement = movement;
-    }
-
-    public Entity(Movement movement) {
-        this(movement, 10);
     }
 
     @Override

@@ -1,10 +1,12 @@
 package org.jantor.elements.movement;
 
+import greenfoot.Greenfoot;
 import org.jantor.elements.Collectable;
 import org.jantor.elements.Player;
+
 import java.util.Arrays;
 
-public class PlayerMovement extends Movement {
+public class PlayerMovement extends EntityMovement {
 
     public PlayerMovement(Player player) {
         super(player);
@@ -18,11 +20,11 @@ public class PlayerMovement extends Movement {
 
         ((Player) entity).collect(Collectable.class);
 
-        Arrays.stream(MovementDirection.values()).forEach(direction -> {
-            if (direction.isPressed()) currentDirection.add(direction.vector);
+        Arrays.stream(Movement.Direction.values()).forEach(direction -> {
+            if (Greenfoot.isKeyDown(direction.name().toLowerCase())) currentDirection.add(direction.vector);
         });
 
-        if (MovementDirection.UP.isPressed() && onGround) {
+        if (Greenfoot.isKeyDown(Movement.Direction.UP.name().toLowerCase()) && onGround) {
             verticalMomentum = -jumpStrength;
             onGround = false;
         }
