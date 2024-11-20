@@ -18,4 +18,6 @@ public class Player extends Entity {
         System.out.println("Score: " + score);
         super.removeTouching(cls);
     }
+
+
 }

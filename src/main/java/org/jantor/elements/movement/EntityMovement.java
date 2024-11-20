@@ -7,29 +7,8 @@ import org.jantor.elements.Entity;
 import org.jantor.utils.Vector2D;
 import org.jantor.elements.Entity.EntityImage;
 
-public abstract class Movement {
-    protected enum MovementDirection {
-        LEFT(new Vector2D(-1, 0)),
-        RIGHT(new Vector2D(1, 0)),
-        UP(new Vector2D(0, -1)),
-        DOWN(new Vector2D(0, 1));
-
-        public final Vector2D vector;
-
-        MovementDirection(Vector2D vector) {
-            this.vector = vector;
-        }
-
-        public boolean isPressed() {
-            return Greenfoot.isKeyDown(this.name().toLowerCase());
-        }
-
-    }
-
-    protected final Entity entity;
-    public Vector2D currentDirection;
-    protected Vector2D latestDirection;
-    protected Vector2D lastDirection;
+public class EntityMovement extends Movement {
+    protected Entity entity;
 
     protected boolean onGround = false;
     private boolean hasJumped = false;
@@ -38,18 +17,16 @@ public abstract class Movement {
     int jumpStrength = 20;
 
 
-    public Movement(Entity entity) {
+    public EntityMovement(Entity entity) {
+        super();
         this.entity = entity;
-        this.currentDirection = new Vector2D(0, 0);
-        this.lastDirection = new Vector2D(0, 0);
-        this.latestDirection = new Vector2D(0, 0);
     }
 
     public void act() {
-        entity.setImage(isFacingLeft() ? image().getCurrentImage() : image().getCurrentImageMirrored());
         applyGravity();
         updateLocation();
-        applySounds();
+        entity.setImage(isFacingLeft() ? image().getCurrentImage() : image().getCurrentImageMirrored());
+        //applySounds();
     }
 
     private void updateLocation() {
@@ -62,7 +39,7 @@ public abstract class Movement {
         entity.setLocation(entity.getX() + dx, entity.getY() + dy);
     }
 
-    protected void applyGravity() {
+    private void applyGravity() {
         if (onGround) {
             onGround = cantMoveTo(0, 1);
             if (onGround) return;
@@ -84,20 +61,21 @@ public abstract class Movement {
     }
 
     private void applySounds() {
-        boolean playJumped = currentDirection.y == -1 && lastDirection.y == 0 && hasJumped;
+        int leftY = Direction.LEFT.vector.y;
+
+        boolean playJumped = currentDirection.y == leftY && lastDirection.y == 0 && hasJumped;
         if (playJumped) Greenfoot.playSound("sounds/jumped.wav");
         hasJumped = onGround;
     }
 
 
-    protected boolean cantMoveTo(int dx, int dy) {
-        int[][] offsets = {
-                {-25, -25}, {25, -25}, {-25, 25}, {25, 25}
-        };
+    private boolean cantMoveTo(int dx, int dy) {
+        int halfWidth = Constants.elementWidth / 2;
+        int[][] offsets = {{-1, -1}, {1, -1}, {-1, 1}, {1, 1}};
 
         for (int[] offset : offsets) {
-            int newX = entity.getX() + offset[0] + dx;
-            int newY = entity.getY() + offset[1] + dy;
+            int newX = entity.getX() + offset[0] * halfWidth + dx;
+            int newY = entity.getY() + offset[1] * halfWidth + dy;
             if (entity.getOneObjectAtOffset(newX - entity.getX(), newY - entity.getY(), Block.class) != null) {
                 return true;
             }
@@ -106,9 +84,9 @@ public abstract class Movement {
     }
 
     private EntityImage image() {
-        if (!onGround)                                      return EntityImage.JUMPING;
-        if (currentDirection.y == 1)                        return EntityImage.CROUCHING;
-        if (currentDirection.equals(Constants.zeroVector))  return EntityImage.STANDING;
+        if (!onGround) return EntityImage.JUMPING;
+        if (currentDirection.y == 1) return EntityImage.CROUCHING;
+        if (currentDirection.equals(Constants.zeroVector)) return EntityImage.STANDING;
         return EntityImage.WALKING;
     }
 

@@ -15,6 +15,7 @@
 > [!IMPORTANT]
 >- **Level Creation, Loading & Saving**
 >- **Menu Functionality**
+>- **Scrolling Background**
 >- **Assets**
 
 
@@ -23,7 +24,7 @@
 
 > [!WARNING]
 >- **Collectables**
->- **Scrolling Background**
+>- **Dynamic Block Loading**
 
 📝 Planned
 ---
@@ -32,8 +33,9 @@
 >- **Level Design**
 
 
-How to setup ?
+How to use?
 ---
 
-1. Clone Project
-2. Open in IntelliJ
+1. Clone Project via Git
+2. Open Terminal
+3. run ```./gradlew runScenario```

@@ -4,29 +4,30 @@ import org.jantor.constants.Constants;
 import org.jantor.elements.Block;
 import org.jantor.elements.Collectable;
 import org.jantor.elements.Border;
+import org.jantor.elements.movement.BlockMovement;
 import org.jantor.utils.GreenfootImage;
-import org.jantor.elements.Element;
 import org.jantor.elements.Player;
 import org.jantor.screens.Screen;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jantor.elements.Block.BlockType;
 import org.jantor.elements.Border.BorderDirection;
+import org.reactfx.util.LL;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import static org.jantor.utils.JsonReader.getJsonObject;
 
 public class Level extends Screen {
     private int width;
     private int height;
-    private String[][] elements;
 
-    public Player player;
+    private String[][] ElementCoords;
     private int[] playerCoords;
-
-    private Collectable collectable;
     private int[] collectableCoords;
+
+    private final ArrayList<Block> blocks = new ArrayList<>();
 
     public Level(String filename) {
         super();
@@ -65,7 +66,7 @@ public class Level extends Screen {
                 collectableCoords[i] = collectableCoordsJson.getInt(i);
             }
 
-            elements = new String[height][width];
+            ElementCoords = new String[height][width];
 
             JSONArray blocksJson = levelJson.getJSONArray("blocks");
 
@@ -75,7 +76,7 @@ public class Level extends Screen {
                 JSONArray row = blocksJson.getJSONArray(y);
 
                 for (int x = 0; x < width; x++) {
-                    elements[y][x] = row.getString(x).replace(" ", "").toUpperCase();
+                    ElementCoords[y][x] = row.getString(x).replace(" ", "").toUpperCase();
                 }
             }
         } catch (Exception e) {
@@ -84,30 +85,32 @@ public class Level extends Screen {
     }
 
     public void configureBlocks() {
-        int z = 0;
-
+        int z;
         for (int y = 0; y < height; y++) {
             z = height - y - 1;
             for (int x = 0; x < width; x++) {
-                String blockTypeString = elements[z][x];
+                String blockTypeString = ElementCoords[z][x];
 
                 BlockType blockType = BlockType.getByString(blockTypeString);
 
                 if (blockType == null) continue;
-                Element element = new Block(blockType);
+                Block block = new Block(blockType);
 
-                element.addTo(this, x, z);
+                blocks.add(block);
+                block.addTo(this, x, z);
             }
         }
+        Constants.blocks = blocks;
     }
 
     private void configurePlayer() {
-        player = new Player();
+        Player player = new Player();
+        Constants.player = player;
         player.addTo(this, playerCoords[0], playerCoords[1]);
     }
 
     private void configureCollectable() {
-        collectable = new Collectable(Collectable.CollectableType.COIN);
+        Collectable collectable = new Collectable(Collectable.CollectableType.COIN);
         collectable.addTo(this, collectableCoords[0], collectableCoords[1]);
     }
 
@@ -115,8 +118,8 @@ public class Level extends Screen {
         Border leftBorder = new Border(BorderDirection.LEFT);
         Border rightBorder = new Border(BorderDirection.RIGHT);
 
-        leftBorder.addTo(this, Constants.screenWidth / 8, Constants.screenHeight/2);
-        rightBorder.addTo(this, Constants.screenWidth + Constants.screenWidth / 8, Constants.screenHeight/2);
+        addObject(leftBorder, Constants.screenWidth / 8, Constants.screenHeight/2 );
+        addObject(rightBorder, Constants.screenWidth + Constants.screenWidth / 8, Constants.screenHeight/2);
     }
 
     private void configureBackground() {
