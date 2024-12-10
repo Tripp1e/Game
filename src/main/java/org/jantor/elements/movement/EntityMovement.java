@@ -4,7 +4,6 @@ import greenfoot.Greenfoot;
 import org.jantor.constants.Constants;
 import org.jantor.elements.Block;
 import org.jantor.elements.Entity;
-import org.jantor.utils.Vector2D;
 import org.jantor.elements.Entity.EntityImage;
 
 public class EntityMovement extends Movement {
@@ -70,7 +69,7 @@ public class EntityMovement extends Movement {
 
 
     private boolean cantMoveTo(int dx, int dy) {
-        int halfWidth = Constants.elementWidth / 2;
+        int halfWidth = Constants.elementSize.x / 2;
         int[][] offsets = {{-1, -1}, {1, -1}, {-1, 1}, {1, 1}};
 
         for (int[] offset : offsets) {

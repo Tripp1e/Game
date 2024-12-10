@@ -1,10 +1,12 @@
 package org.jantor.elements;
 
 import greenfoot.Actor;
+import org.jantor.constants.Constants;
 import org.jantor.elements.movement.EntityMovement;
 import org.jantor.elements.movement.Movement;
 import org.jantor.utils.GifImage;
 import org.jantor.utils.GreenfootImage;
+import org.jantor.utils.Vector2D;
 
 public class Entity extends Element {
 
@@ -39,8 +41,8 @@ public class Entity extends Element {
         }
     }
 
-    public Entity(EntityMovement movement, int speed) {
-        super(EntityImage.WALKING.gif.getCurrentImage());
+    public Entity(EntityMovement movement, int speed, Vector2D pos) {
+        super(EntityImage.WALKING.gif.getCurrentImage(), pos);
 
         this.speed = speed;
         this.movement = movement;

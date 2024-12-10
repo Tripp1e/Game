@@ -26,8 +26,7 @@ public class Game extends Screen {
     };
 
     private final Button[] buttons = {
-            new Button("One", new Level("one")),
-            new Clickable("LevelBuilder", runnable)
+            new Button("One", new Level("one"))
     };
 
     public Game() {

@@ -9,26 +9,35 @@ public class Vector2D {
         this.y = y;
     }
 
-    public void add(Vector2D other) {
+    public Vector2D add(Vector2D other) {
         this.x += other.x;
         this.y += other.y;
-        this.normalize();
+        return this;
     }
 
-    public void subtract(Vector2D other) {
-        this.x -= other.x;
-        this.y -= other.y;
-        this.normalize();
+    public Vector2D multiply(Vector2D other) {
+        this.x *= other.x;
+        this.y *= other.y;
+        return this;
+    }
+    public Vector2D multiply(Double factor) {
+        this.x *= factor;
+        this.y *= factor;
+        return this;
     }
 
     public void copy(Vector2D other) {
         this.x = other.x;
         this.y = other.y;
     }
+    public static Vector2D copyFrom(Vector2D other) {
+        return new Vector2D(other.x, other.y);
+    }
 
-    public void normalize() {
+    public Vector2D normalize() {
         this.x = this.x == 0 ? 0 : this.x / Math.abs(this.x);
         this.y = this.y == 0 ? 0 : this.y / Math.abs(this.y);
+        return this;
     }
 
     public boolean equals(Vector2D other) {

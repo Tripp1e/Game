@@ -3,16 +3,13 @@ package org.jantor.level;
 import org.jantor.constants.Constants;
 import org.jantor.elements.Block;
 import org.jantor.elements.Collectable;
-import org.jantor.elements.Border;
-import org.jantor.elements.movement.BlockMovement;
-import org.jantor.utils.GreenfootImage;
 import org.jantor.elements.Player;
 import org.jantor.screens.Screen;
+import org.jantor.utils.Renderer;
+import org.jantor.utils.Vector2D;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jantor.elements.Block.BlockType;
-import org.jantor.elements.Border.BorderDirection;
-import org.reactfx.util.LL;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -20,110 +17,88 @@ import java.util.ArrayList;
 import static org.jantor.utils.JsonReader.getJsonObject;
 
 public class Level extends Screen {
-    private int width;
-    private int height;
+    Renderer renderer;
 
-    private String[][] ElementCoords;
-    private int[] playerCoords;
-    private int[] collectableCoords;
-
-    private final ArrayList<Block> blocks = new ArrayList<>();
+    public ArrayList<Object[]> blockInfo = new ArrayList<>();;
+    public Vector2D playerCoords;
+    public ArrayList<Vector2D> collectableCoords = new ArrayList<>();
 
     public Level(String filename) {
         super();
+
+        renderer = new Renderer(this);
         setPaintOrder(Player.class);
+
         loadLevel(filename);
-        configureBlocks();
-        configurePlayer();
-        configureCollectable();
-        configureBorders();
-        configureBackground();
+
+        Constants.renderer = renderer;
+        Constants.world = this;
+
+        renderer.init();
     }
 
     private void loadLevel(String filename) {
         filename = "/levels/" + filename + ".json";
         try {
             InputStream inputStream = getClass().getResourceAsStream(filename);
-
-            if (inputStream == null) {
-                System.err.println("Error: Could not find the file: " + filename);
-                return;
-            }
+            if (inputStream == null) { System.err.println("Error: Could not find the file: " + filename); return; }
 
             JSONObject levelJson = getJsonObject(inputStream);
-            width = levelJson.getInt("width");
-            height = levelJson.getInt("height");
 
-            playerCoords = new int[2];
-            JSONArray playerCoordsJson = levelJson.getJSONArray("player");
-            for (int i = 0; i < playerCoordsJson.length(); i++) {
-                playerCoords[i] = playerCoordsJson.getInt(i);
+            JSONArray playerJson = levelJson.getJSONArray("player");
+            playerCoords = new Vector2D(playerJson.getInt(0), playerJson.getInt(1));
+
+            renderer.player = new Player(playerCoords);
+
+            JSONArray collectablesJson = levelJson.getJSONArray("collectables");
+            for (int i = 0; i < collectablesJson.length(); i++) {
+                JSONArray coordsJson = collectablesJson.getJSONArray(i);
+                Vector2D coords = new Vector2D(coordsJson.getInt(0), coordsJson.getInt(1));
+                collectableCoords.add(coords);
             }
+            loadCollectables();
 
-            collectableCoords = new int[2];
-            JSONArray collectableCoordsJson = levelJson.getJSONArray("collectable");
-            for (int i = 0; i < collectableCoordsJson.length(); i++) {
-                collectableCoords[i] = collectableCoordsJson.getInt(i);
-            }
+            JSONObject blocksJson = levelJson.getJSONObject("blocks");
 
-            ElementCoords = new String[height][width];
+            for (String blockType : blocksJson.keySet()) {
+                JSONArray coordsArray = blocksJson.getJSONArray(blockType);
 
-            JSONArray blocksJson = levelJson.getJSONArray("blocks");
+                for (int i = 0; i < coordsArray.length(); i++) {
+                    JSONArray coords = coordsArray.getJSONArray(i);
+                    int x = coords.getInt(0);
+                    int y = coords.getInt(1);
 
-            for (int y = 0; y < height; y++) {
-                if (y >= blocksJson.length()) break;
+                    Vector2D vector = new Vector2D(x, y);
+                    BlockType type = BlockType.getByString(blockType.toUpperCase());
+                    if (type == null) continue;
 
-                JSONArray row = blocksJson.getJSONArray(y);
-
-                for (int x = 0; x < width; x++) {
-                    ElementCoords[y][x] = row.getString(x).replace(" ", "").toUpperCase();
+                    blockInfo.add(new Object[]{type, vector});
                 }
             }
+            loadBlocks();
+
+            renderer.width = levelJson.getInt("width");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void configureBlocks() {
-        int z;
-        for (int y = 0; y < height; y++) {
-            z = height - y - 1;
-            for (int x = 0; x < width; x++) {
-                String blockTypeString = ElementCoords[z][x];
+    public void loadBlocks() {
+        for (Object[] info : blockInfo) {
+            Block.BlockType type = (Block.BlockType) info[0];
+            Vector2D position = (Vector2D) info[1];
 
-                BlockType blockType = BlockType.getByString(blockTypeString);
+            Block block = new Block(type, position);
 
-                if (blockType == null) continue;
-                Block block = new Block(blockType);
-
-                blocks.add(block);
-                block.addTo(this, x, z);
-            }
+            renderer.blocks.add(block);
         }
-        Constants.blocks = blocks;
     }
 
-    private void configurePlayer() {
-        Player player = new Player();
-        Constants.player = player;
-        player.addTo(this, playerCoords[0], playerCoords[1]);
+    private void loadCollectables() {
+        for (Vector2D coords: collectableCoords) {
+            Collectable collectable = new Collectable(Collectable.CollectableType.COIN);
+            renderer.collectables.add(new Object[]{collectable, coords});
+        }
     }
 
-    private void configureCollectable() {
-        Collectable collectable = new Collectable(Collectable.CollectableType.COIN);
-        collectable.addTo(this, collectableCoords[0], collectableCoords[1]);
-    }
-
-    private void configureBorders() {
-        Border leftBorder = new Border(BorderDirection.LEFT);
-        Border rightBorder = new Border(BorderDirection.RIGHT);
-
-        addObject(leftBorder, Constants.screenWidth / 8, Constants.screenHeight/2 );
-        addObject(rightBorder, Constants.screenWidth + Constants.screenWidth / 8, Constants.screenHeight/2);
-    }
-
-    private void configureBackground() {
-        GreenfootImage background = new GreenfootImage("images/levels/background.png");
-        setBackground(background);
-    }
 }
