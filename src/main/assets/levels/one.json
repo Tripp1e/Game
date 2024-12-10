@@ -1,25 +1,10 @@
 {
-  "width": 25,
-  "height": 17,
-  "blocks": [
-    ["air",   "air",   "air",   "air",   "air",   "air",    "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
-    ["air",   "air",   "air",   "air",   "air",   "air",    "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
-    ["air",   "air",   "air",   "air",   "air",   "grass",    "grass",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
-    ["air",   "air",   "air",   "air",   "air",   "air",    "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
-    ["air",   "air",   "air",   "air",   "air",   "air",    "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
-    ["air",   "air",   "air",   "air",   "air",   "air",    "grass",   "grass",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
-    ["air",   "air",   "air",   "air",   "air",   "air",    "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
-    ["air",   "air",   "stone",   "stone",   "air",   "air",    "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
-    ["air",   "air",   "air",   "air",   "air",   "air",    "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
-    ["air",   "air",   "air",   "air",   "air",   "air",    "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
-    ["air",   "air",   "air",   "air",   "air",   "air",    "air",   "air",   "air",   "grass", "grass", "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
-    ["air",   "air",   "air",   "air",   "air",   "air",    "air",   "air",   "air",   "air",   "air",   "grass", "grass", "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
-    ["air",   "air",   "air",   "air",   "air",   "air", "air",   "air",   "air",   "air",   "air",   "dirt",  "dirt",  "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air",   "air"  ],
-    ["grass", "grass", "grass", "grass", "grass", "grass",  "grass", "grass", "grass", "grass", "grass", "dirt",  "dirt",  "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["dirt",  "dirt",  "dirt",  "dirt",  "dirt",  "dirt",   "dirt",  "dirt",  "dirt",  "dirt",  "dirt",  "dirt",  "dirt",  "dirt",  "dirt",  "dirt",  "dirt",  "dirt",  "dirt",  "dirt",  "dirt",  "dirt",  "dirt",  "dirt",  "dirt" ],
-    ["stone", "stone", "stone", "stone", "stone", "stone",  "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone"],
-    ["stone", "stone", "stone", "stone", "stone", "stone",  "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone", "stone"]
-  ],
-  "player": [3, 3],
-  "collectable": [6, 6]
+  "blocks": {
+    "grass": [ [2, 6], [6, 6], [6, 5], [10, 6], [11, 6], [10, 10], [11, 10] ],
+    "stone": [ [3, 7], [4, 7] ],
+    "dirt": [ [12, 3], [13, 3] ]
+  },
+  "player": [6, 3],
+  "collectables": [ [6, 6], [7, 7] ],
+  "width": 30
 }

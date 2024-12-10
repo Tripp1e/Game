@@ -5,6 +5,7 @@ import greenfoot.Greenfoot;
 import org.jantor.constants.Constants;
 import org.jantor.utils.GreenfootImage;
 import org.jantor.screens.Screen;
+import org.jantor.utils.Vector2D;
 import org.reactfx.util.LL;
 
 
@@ -28,11 +29,11 @@ public class Button extends Widget {
     }
 
     public void setHitbox() {
-        GreenfootImage button = new GreenfootImage(Constants.elementWidth, Constants.elementHeight);
-        button.drawRoundRect(15, Constants.elementWidth, Constants.elementHeight, color);
+        GreenfootImage button = new GreenfootImage(Constants.elementSize);
+        button.drawRoundRect(15, Constants.elementSize, color);
 
         button.setColor(fontColor);
-        button.drawString(name, Constants.elementWidth / 2, Constants.elementHeight / 2);
+        button.drawString(name, Vector2D.copyFrom(Constants.elementSize).multiply(0.5));
 
         setImage(button);
     }

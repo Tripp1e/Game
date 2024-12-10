@@ -1,13 +1,14 @@
 package org.jantor.elements;
 
 import org.jantor.elements.movement.PlayerMovement;
+import org.jantor.utils.Vector2D;
 
 public class Player extends Entity {
 
     public int score = 0;
 
-    public Player() {
-        super(null, 5);
+    public Player(Vector2D pos) {
+        super(null, 5, pos);
         this.movement = new PlayerMovement(this);
     }
 
@@ -18,6 +19,5 @@ public class Player extends Entity {
         System.out.println("Score: " + score);
         super.removeTouching(cls);
     }
-
 
 }

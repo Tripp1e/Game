@@ -16,6 +16,9 @@ public class GreenfootImage extends greenfoot.GreenfootImage {
     public GreenfootImage(int width, int height) {
         super(width, height);
     }
+    public GreenfootImage(Vector2D vec) {
+        this(vec.x, vec.y);
+    }
 
 
     public void drawRoundRect(int borderRadius, int width, int height, Color color) {
@@ -32,6 +35,13 @@ public class GreenfootImage extends greenfoot.GreenfootImage {
 
         this.fillRect(borderRadius, 0, width - 2 * borderRadius, height);
         this.fillRect(0, borderRadius, width, height - 2 * borderRadius);
+    }
+    public void drawRoundRect(int borderRadius, Vector2D vec, Color color) {
+        drawRoundRect(borderRadius, vec.x, vec.y, color);
+    }
+
+    public void drawString(String string, Vector2D vec) {
+        super.drawString(string, vec.x, vec.y);
     }
 
     public GreenfootImage mirror() {
