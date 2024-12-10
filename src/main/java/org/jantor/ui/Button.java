@@ -40,6 +40,7 @@ public class Button extends Widget {
     public void act() {
         if (Greenfoot.mouseClicked(this)) {
             Greenfoot.setWorld(link);
+
         }
     }
 }

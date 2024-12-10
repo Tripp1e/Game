@@ -1,7 +1,10 @@
 package org.jantor.elements;
 
 import greenfoot.Actor;
+import org.jantor.constants.Constants;
 import org.jantor.elements.movement.Movement;
+import org.jantor.ui.Widget;
+import org.jantor.ui.counter.PlayerCounter;
 import org.jantor.utils.GifImage;
 import org.jantor.utils.GreenfootImage;
 
@@ -10,6 +13,8 @@ public class Entity extends Element {
     Movement movement;
     final public int speed;
     public int score = 0;
+
+    private final PlayerCounter scoreWidget = new PlayerCounter(String.valueOf(score));
 
     public enum EntityImage {
         WALKING("gif"),
@@ -52,6 +57,9 @@ public class Entity extends Element {
     @Override
     public void act() {
         movement.act();
+        scoreWidget.setName(String.valueOf(score));
+        scoreWidget.setHitbox();
+        getWorld().addObject(scoreWidget, Constants.screenWidth /2, Constants.screenHeight / 2);
     }
 
     @Override
