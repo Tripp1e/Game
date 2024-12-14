@@ -2,9 +2,9 @@ package org.jantor.utils;
 
 import org.jantor.constants.Constants;
 import org.jantor.elements.Block;
+import org.jantor.elements.Collectable;
 import org.jantor.elements.Player;
 import org.jantor.level.Level;
-import org.jantor.ui.Button;
 
 import java.util.ArrayList;
 
@@ -13,7 +13,7 @@ public class Renderer {
     public Player player = null;
     public final ArrayList<Block> blocks = new ArrayList<>();
     private final ArrayList<Block> floorBlocks = new ArrayList<>();
-    public final ArrayList<Object[]> collectables = new ArrayList<>();
+    public final ArrayList<Collectable> collectables = new ArrayList<>();
 
     public int width = 20;
 
@@ -24,6 +24,7 @@ public class Renderer {
     public void init() {
         loadFloor();
         loadBlocks();
+        loadCollectables();
         renderBackground();
         loadPlayer();
         Constants.world.addObject(Constants.help, Constants.screenSize.x / 2, Constants.screenSize.y / 2);
@@ -36,6 +37,9 @@ public class Renderer {
         for (Block block : floorBlocks) {
             block.updateLocation();
         }
+        for (Collectable collectable : collectables) {
+            collectable.updateLocation();
+        }
     }
 
     private void loadFloor() {
@@ -43,6 +47,12 @@ public class Renderer {
             floorBlocks.add(new Block(Block.BlockType.GRASS, new Vector2D(i, 2)));
             floorBlocks.add(new Block(Block.BlockType.DIRT,  new Vector2D(i, 1)));
             floorBlocks.add(new Block(Block.BlockType.DIRT,  new Vector2D(i, 0)));
+        }
+    }
+
+    private void loadCollectables() {
+        for (Collectable coll: collectables) {
+            coll.addTo(level);
         }
     }
 

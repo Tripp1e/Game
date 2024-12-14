@@ -31,19 +31,22 @@ public class PlayerMovement extends EntityMovement {
             onGround = false;
         }
 
-        boolean isNearLeftEdge = entity.getX() < Constants.screenSize.x / 4;
+        boolean isNearLeftEdge = entity.getX() < Constants.screenSize.x * 0.25;
         boolean isNearRightEdge = entity.getX() > Constants.screenSize.x * 0.75;
 
         int screenOffsetX =
-                isNearLeftEdge && currentDirection.equals(Direction.LEFT.vector)
+                isNearLeftEdge && currentDirection.x == Direction.LEFT.vector.x
                 ? -1 * entity.speed
 
-                : (isNearRightEdge && currentDirection.equals(Direction.RIGHT.vector)
+                : (isNearRightEdge && currentDirection.x == Direction.RIGHT.vector.x
                 ? entity.speed
 
                 : 0);
-        Constants.originOffset.add(new Vector2D(-screenOffsetX, 0));
-        Constants.renderer.updateBlocks();
+        if (!wouldCollide(currentDirection.x, currentDirection.y)) {
+            Constants.renderer.updateBlocks();
+            Constants.originOffset.add(new Vector2D(-screenOffsetX, 0));
+            if (screenOffsetX != 0) currentDirection.x = 0;
+        } else currentDirection.toZero();
 
         super.act();
     }

@@ -1,7 +1,11 @@
 package org.jantor.elements;
 
+import greenfoot.Actor;
+import org.jantor.constants.Constants;
 import org.jantor.elements.movement.PlayerMovement;
 import org.jantor.utils.Vector2D;
+
+import java.util.Collection;
 
 public class Player extends Entity {
 
@@ -15,9 +19,10 @@ public class Player extends Entity {
     public void collect(Class<? extends Collectable> cls) {
         if (!isTouching(cls)) return;
         score += 1;
-        System.out.println("Collecting " + cls.getSimpleName());
-        System.out.println("Score: " + score);
-        super.removeTouching(cls);
+        Collectable collectable = (Collectable) getOneIntersectingObject(cls);
+        Constants.renderer.collectables.remove(collectable);
+        getWorld().removeObject(collectable);
+        System.out.println("score: " + score);
     }
 
 }

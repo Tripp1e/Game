@@ -5,6 +5,7 @@ import org.jantor.constants.Constants;
 import org.jantor.elements.Block;
 import org.jantor.elements.Entity;
 import org.jantor.elements.Entity.EntityImage;
+import org.jantor.utils.Vector2D;
 
 public class EntityMovement extends Movement {
     protected Entity entity;
@@ -32,26 +33,26 @@ public class EntityMovement extends Movement {
         int dx = entity.speed * currentDirection.x;
         int dy = onGround ? jumpStrength * currentDirection.y : verticalMomentum;
 
-        if (cantMoveTo(dx, 0)) dx = 0;
-        if (cantMoveTo(0, dy)) dy = 0;
+        if (wouldCollide(dx, 0)) dx = 0;
+        if (wouldCollide(0, dy)) dy = 0;
 
         entity.setLocation(entity.getX() + dx, entity.getY() + dy);
     }
 
     private void applyGravity() {
         if (onGround) {
-            onGround = cantMoveTo(0, 1);
+            onGround = wouldCollide(0, 1);
             if (onGround) return;
         }
 
         verticalMomentum += gravity;
 
-        if (cantMoveTo(0, verticalMomentum)) {
-            while (cantMoveTo(0, verticalMomentum) && verticalMomentum != 0) {
+        if (wouldCollide(0, verticalMomentum)) {
+            while (wouldCollide(0, verticalMomentum) && verticalMomentum != 0) {
                 verticalMomentum--;
             }
 
-            onGround = cantMoveTo(0, 1);
+            onGround = wouldCollide(0, 1);
 
             verticalMomentum = 0;
         } else {
@@ -67,8 +68,7 @@ public class EntityMovement extends Movement {
         hasJumped = onGround;
     }
 
-
-    private boolean cantMoveTo(int dx, int dy) {
+    boolean wouldCollide(int dx, int dy) {
         int halfWidth = Constants.elementSize.x / 2;
         int[][] offsets = {{-1, -1}, {1, -1}, {-1, 1}, {1, 1}};
 

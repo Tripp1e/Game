@@ -19,7 +19,7 @@ import static org.jantor.utils.JsonReader.getJsonObject;
 public class Level extends Screen {
     Renderer renderer;
 
-    public ArrayList<Object[]> blockInfo = new ArrayList<>();;
+    public ArrayList<Object[]> blockInfo = new ArrayList<>();
     public Vector2D playerCoords;
     public ArrayList<Vector2D> collectableCoords = new ArrayList<>();
 
@@ -96,8 +96,8 @@ public class Level extends Screen {
 
     private void loadCollectables() {
         for (Vector2D coords: collectableCoords) {
-            Collectable collectable = new Collectable(Collectable.CollectableType.COIN);
-            renderer.collectables.add(new Object[]{collectable, coords});
+            Collectable collectable = new Collectable(Collectable.CollectableType.COIN, coords);
+            renderer.collectables.add(collectable);
         }
     }
 
