@@ -1,7 +1,7 @@
 package org.jantor.elements;
 
-import org.jantor.constants.Constants;
 import org.jantor.utils.GreenfootImage;
+import org.jantor.utils.Vector2D;
 
 public class Collectable extends Element {
 
@@ -17,8 +17,8 @@ public class Collectable extends Element {
         }
     }
 
-    public Collectable(CollectableType type) {
-        super(type.getImage(), Constants.zeroVector);
+    public Collectable(CollectableType type, Vector2D position) {
+        super(type.getImage(), position);
     }
 
 }

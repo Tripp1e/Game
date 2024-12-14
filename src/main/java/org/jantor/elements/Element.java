@@ -7,7 +7,7 @@ import org.jantor.constants.Constants;
 import org.jantor.utils.Vector2D;
 
 public class Element extends Actor {
-    public final Vector2D position;
+    public Vector2D position;
 
     public Element(GreenfootImage image, Vector2D position) {
         setImage(image);
@@ -31,7 +31,7 @@ public class Element extends Actor {
         coords.multiply(Constants.elementSize);
 
         coords.multiply(new Vector2D(1, -1)).add(Constants.originOffset);
-        coords.add(Vector2D.copyFrom(Constants.elementSize).multiply(0.5));
+        coords.add(Constants.elementOffset);
 
         return coords;
     }
@@ -53,4 +53,8 @@ public class Element extends Actor {
     public boolean isTouching(Class cls) {
         return super.isTouching(cls);
     }
+
+    @Override
+    public Actor getOneIntersectingObject(Class<?> cls) { return super.getOneIntersectingObject(cls); }
+
 }

@@ -9,6 +9,7 @@ import org.jantor.utils.Vector2D;
 public class Constants {
 
     public static final Vector2D elementSize = new Vector2D(50, 50);
+    public static final Vector2D elementOffset = new Vector2D(25, 25);
 
     public static final Vector2D screenSize = new Vector2D(1200, 800);
 
