@@ -3,7 +3,7 @@ package org.jantor.elements.movement;
 import org.jantor.utils.Vector2D;
 
 public abstract class Movement {
-    protected enum Direction {
+    public enum Direction {
         LEFT(new Vector2D(-1, 0)),
         RIGHT(new Vector2D(1, 0)),
         UP(new Vector2D(0, -1)),

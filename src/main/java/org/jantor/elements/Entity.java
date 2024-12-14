@@ -48,6 +48,8 @@ public class Entity extends Element {
         this.movement = movement;
     }
 
+    public Vector2D getLocation() { return new Vector2D(getX(), getY()); }
+
     @Override
     public void act() {
         movement.act();
@@ -56,6 +58,9 @@ public class Entity extends Element {
     @Override
     public Actor getOneObjectAtOffset(int dx, int dy, Class<?> cls) {
         return super.getOneObjectAtOffset(dx, dy, cls);
+    }
+    public Actor getOneObjectAtOffset(Vector2D vec, Class<?> cls) {
+        return getOneObjectAtOffset(vec.x, vec.y, cls);
     }
 
 }

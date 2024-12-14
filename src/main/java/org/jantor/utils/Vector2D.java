@@ -8,6 +8,10 @@ public class Vector2D {
         this.x = x;
         this.y = y;
     }
+    public Vector2D(Vector2D vec) {
+        this.x = vec.x;
+        this.y = vec.y;
+    }
 
     public Vector2D add(Vector2D other) {
         this.x += other.x;
@@ -26,6 +30,11 @@ public class Vector2D {
         return this;
     }
     public Vector2D multiply(Double factor) {
+        this.x *= factor;
+        this.y *= factor;
+        return this;
+    }
+    public Vector2D multiply(int factor) {
         this.x *= factor;
         this.y *= factor;
         return this;

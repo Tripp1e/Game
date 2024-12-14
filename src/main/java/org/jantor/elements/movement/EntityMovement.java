@@ -6,6 +6,7 @@ import org.jantor.elements.Block;
 import org.jantor.elements.Entity;
 import org.jantor.elements.Entity.EntityImage;
 import org.jantor.utils.Vector2D;
+import org.reactfx.util.LL;
 
 public class EntityMovement extends Movement {
     protected Entity entity;
@@ -31,29 +32,25 @@ public class EntityMovement extends Movement {
 
     private void updateLocation() {
         int dx = entity.speed * currentDirection.x;
-        int dy = onGround ? jumpStrength * currentDirection.y : verticalMomentum;
 
-        if (wouldCollide(dx, 0)) dx = 0;
-        if (wouldCollide(0, dy)) dy = 0;
+        int dy = onGround ? jumpStrength * currentDirection.y : verticalMomentum;
+        Vector2D delta = new Vector2D(dx, dy);
+        if (wouldCollide(delta)) delta.toZero();
 
         entity.setLocation(entity.getX() + dx, entity.getY() + dy);
     }
 
     private void applyGravity() {
         if (onGround) {
-            onGround = wouldCollide(0, 1);
+            onGround = wouldCollide(Direction.DOWN);
             if (onGround) return;
         }
 
         verticalMomentum += gravity;
 
-        if (wouldCollide(0, verticalMomentum)) {
-            while (wouldCollide(0, verticalMomentum) && verticalMomentum != 0) {
-                verticalMomentum--;
-            }
-
-            onGround = wouldCollide(0, 1);
-
+        if (wouldCollide(Direction.DOWN, verticalMomentum)) {
+            while (wouldCollide(Direction.DOWN.vector.multiply(verticalMomentum)) && verticalMomentum != 0) verticalMomentum--;
+            onGround = wouldCollide(Direction.DOWN);
             verticalMomentum = 0;
         } else {
             onGround = false;
@@ -80,6 +77,14 @@ public class EntityMovement extends Movement {
             }
         }
         return false;
+    }
+    boolean wouldCollide(Vector2D vector) { return wouldCollide(vector.x, vector.y); };
+
+    boolean wouldCollide(Direction direction, int multiplier) {
+        return wouldCollide(new Vector2D(direction.vector).multiply(multiplier));
+    }
+    boolean wouldCollide(Direction direction) {
+        return wouldCollide(direction, 1);
     }
 
     private EntityImage image() {
