@@ -42,11 +42,8 @@ public class PlayerMovement extends EntityMovement {
                 ? entity.speed
 
                 : 0);
-        if (!wouldCollide(currentDirection.x, currentDirection.y)) {
-            Constants.renderer.updateBlocks();
-            Constants.originOffset.add(new Vector2D(-screenOffsetX, 0));
-            if (screenOffsetX != 0) currentDirection.x = 0;
-        } else currentDirection.toZero();
+        Constants.renderer.updateBlocks();
+        Constants.originOffset.add(new Vector2D(-screenOffsetX, 0));
 
         super.act();
     }

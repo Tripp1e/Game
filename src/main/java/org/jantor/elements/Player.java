@@ -22,7 +22,6 @@ public class Player extends Entity {
         Collectable collectable = (Collectable) getOneIntersectingObject(cls);
         Constants.renderer.collectables.remove(collectable);
         getWorld().removeObject(collectable);
-        System.out.println("score: " + score);
     }
 
 }

@@ -27,7 +27,6 @@ public class Renderer {
         loadCollectables();
         renderBackground();
         loadPlayer();
-        Constants.world.addObject(Constants.help, Constants.screenSize.x / 2, Constants.screenSize.y / 2);
     }
 
     public void updateBlocks() {
