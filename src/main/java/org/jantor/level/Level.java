@@ -1,18 +1,23 @@
 package org.jantor.level;
 
+import greenfoot.Greenfoot;
 import org.jantor.constants.Constants;
 import org.jantor.elements.Block;
 import org.jantor.elements.Collectable;
 import org.jantor.elements.Player;
 import org.jantor.screens.Screen;
+import org.jantor.shop.Shop;
 import org.jantor.utils.Renderer;
 import org.jantor.utils.Vector2D;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jantor.elements.Block.BlockType;
+import org.jantor.elements.Collectable.CollectableType;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.jantor.utils.JsonReader.getJsonObject;
 
@@ -21,7 +26,9 @@ public class Level extends Screen {
 
     public ArrayList<Object[]> blockInfo = new ArrayList<>();
     public Vector2D playerCoords;
-    public ArrayList<Vector2D> collectableCoords = new ArrayList<>();
+    public ArrayList<Object[]> collectableInfo = new ArrayList<>();
+
+    private JSONObject levelJson;
 
     public Level(String filename) {
         super();
@@ -39,47 +46,47 @@ public class Level extends Screen {
 
     private void loadLevel(String filename) {
         filename = "/levels/" + filename + ".json";
+        InputStream inputStream = getClass().getResourceAsStream(filename);
+        if (inputStream == null) { System.err.println("Error: Could not find the file: " + filename); return; }
         try {
-            InputStream inputStream = getClass().getResourceAsStream(filename);
-            if (inputStream == null) { System.err.println("Error: Could not find the file: " + filename); return; }
+            levelJson = getJsonObject(inputStream);
+        } catch (IOException ignored) {}
 
-            JSONObject levelJson = getJsonObject(inputStream);
+        JSONArray playerJson = levelJson.getJSONArray("player");
+        playerCoords = new Vector2D(playerJson.getInt(0), playerJson.getInt(1));
+        renderer.player = new Player(playerCoords);
 
-            JSONArray playerJson = levelJson.getJSONArray("player");
-            playerCoords = new Vector2D(playerJson.getInt(0), playerJson.getInt(1));
+        processLevelItems("collectables", collectableInfo, CollectableType::getByString);
+        loadCollectables();
+        System.out.println(collectableInfo.toString());
 
-            renderer.player = new Player(playerCoords);
+        processLevelItems("blocks", blockInfo, BlockType::getByString);
+        loadBlocks();
 
-            JSONArray collectablesJson = levelJson.getJSONArray("collectables");
-            for (int i = 0; i < collectablesJson.length(); i++) {
-                JSONArray coordsJson = collectablesJson.getJSONArray(i);
-                Vector2D coords = new Vector2D(coordsJson.getInt(0), coordsJson.getInt(1));
-                collectableCoords.add(coords);
+        renderer.width = levelJson.getInt("width");
+    }
+
+    interface TypeResolver {
+        Object getType(String itemType);
+    }
+    private void processLevelItems(String key, List<Object[]> infoList, TypeResolver typeResolver) {
+        JSONObject itemsJson = levelJson.getJSONObject(key);
+        for (String itemType : itemsJson.keySet()) {
+            JSONArray coordsArray = itemsJson.getJSONArray(itemType);
+            Object type = typeResolver.getType(itemType.toUpperCase());
+            System.out.println("Type: " + type);
+
+            for (int i = 0; i < coordsArray.length(); i++) {
+                JSONArray coords = coordsArray.getJSONArray(i);
+                int x = coords.getInt(0);
+                int y = coords.getInt(1);
+
+                Vector2D vector = new Vector2D(x, y);
+                System.out.println("Position: " + vector);
+                if (type == null) continue;
+
+                infoList.add(new Object[]{type, vector});
             }
-            loadCollectables();
-
-            JSONObject blocksJson = levelJson.getJSONObject("blocks");
-
-            for (String blockType : blocksJson.keySet()) {
-                JSONArray coordsArray = blocksJson.getJSONArray(blockType);
-
-                for (int i = 0; i < coordsArray.length(); i++) {
-                    JSONArray coords = coordsArray.getJSONArray(i);
-                    int x = coords.getInt(0);
-                    int y = coords.getInt(1);
-
-                    Vector2D vector = new Vector2D(x, y);
-                    BlockType type = BlockType.getByString(blockType.toUpperCase());
-                    if (type == null) continue;
-
-                    blockInfo.add(new Object[]{type, vector});
-                }
-            }
-            loadBlocks();
-
-            renderer.width = levelJson.getInt("width");
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -95,9 +102,22 @@ public class Level extends Screen {
     }
 
     private void loadCollectables() {
-        for (Vector2D coords: collectableCoords) {
-            Collectable collectable = new Collectable(Collectable.CollectableType.COIN, coords);
+        for (Object[] info : collectableInfo) {
+            Collectable.CollectableType type = (Collectable.CollectableType) info[0];
+            Vector2D position = (Vector2D) info[1];
+
+            Collectable collectable = new Collectable(type, position);
+
             renderer.collectables.add(collectable);
+        }
+    }
+
+    @Override
+    public void act() {
+        super.act();
+        if (Greenfoot.isKeyDown("S") && getObjects(Shop.class).isEmpty()) {
+            addObject(new Shop(), 0, 0);
+            System.out.println("Shop opened");
         }
     }
 

@@ -1,27 +1,19 @@
 package org.jantor.ui;
 
-import greenfoot.Color;
 import greenfoot.Font;
 import greenfoot.Greenfoot;
-import org.jantor.constants.Constants;
 import org.jantor.utils.GreenfootImage;
-import org.jantor.screens.Screen;
-import org.jantor.utils.Vector2D;
-import org.reactfx.util.LL;
+
+import static org.jantor.constants.PlayerInfo.buy;
 
 
 public class Button extends Widget {
     Runnable link;
-    Color color;
-    Color fontColor;
 
-    public Button(String name, Runnable link, Color color, Color fontColor) {
+    public Button(String name, Runnable link) {
         super(name);
         image = new GreenfootImage("ui/button.png");
         this.link = link;
-
-        this.color = color;
-        this.fontColor = fontColor;
 
         Font font = new Font("Comic Sans MS", true, false, 25);
 
@@ -31,9 +23,14 @@ public class Button extends Widget {
         setImage(image);
 
     }
-
-    public Button(String name, Runnable link) {
-        this(name, link, Color.BLACK, Color.WHITE);
+    public Button(String name, String attribute, int cost, int amount) {
+        this(name, () -> {
+            boolean bought = buy(attribute, cost, amount);
+            if (!bought) System.out.println("Not enough coins to buy");
+        });
+    }
+    public Button(String name, String attribute) {
+        this(name, attribute, 1, 1);
     }
 
     public void act() {

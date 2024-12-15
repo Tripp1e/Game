@@ -2,6 +2,7 @@ package org.jantor.elements.movement;
 
 import greenfoot.Greenfoot;
 import org.jantor.constants.Constants;
+import org.jantor.constants.PlayerInfo;
 import org.jantor.elements.Collectable;
 import org.jantor.elements.Player;
 import org.jantor.utils.Vector2D;
@@ -11,11 +12,12 @@ import java.util.Arrays;
 public class PlayerMovement extends EntityMovement {
 
     public PlayerMovement(Player player) {
-        super(player);
+        super(player, (int) PlayerInfo.get("speed"), (int) PlayerInfo.get("jumpStrength"));
     }
 
     @Override
     public void act() {
+        if (entity == null) return;
         latestDirection.add(currentDirection).normalize();
         lastDirection.copy(currentDirection);
         currentDirection.toZero();
@@ -27,7 +29,7 @@ public class PlayerMovement extends EntityMovement {
         });
 
         if (Greenfoot.isKeyDown(Movement.Direction.UP.name().toLowerCase()) && onGround) {
-            verticalMomentum = -jumpStrength;
+            verticalMomentum = -getJumpStrength();
             onGround = false;
         }
 
@@ -36,10 +38,10 @@ public class PlayerMovement extends EntityMovement {
 
         int screenOffsetX =
                 isNearLeftEdge && currentDirection.x == Direction.LEFT.vector.x
-                ? -1 * entity.speed
+                ? -1 * getSpeed()
 
                 : (isNearRightEdge && currentDirection.x == Direction.RIGHT.vector.x
-                ? entity.speed
+                ? getSpeed()
 
                 : 0);
         Constants.renderer.updateBlocks();
@@ -48,4 +50,12 @@ public class PlayerMovement extends EntityMovement {
         super.act();
     }
 
+    @Override
+    public int getSpeed()                           { return (int) PlayerInfo.get("speed"); }
+    @Override
+    public void setSpeed(int speed)                 { PlayerInfo.set("speed", speed); }
+    @Override
+    public int getJumpStrength()                    { return (int) PlayerInfo.get("jumpStrength"); }
+    @Override
+    public void setJumpStrength(int jumpStrength)   { PlayerInfo.set("jumpStrength", jumpStrength); }
 }

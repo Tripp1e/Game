@@ -1,5 +1,6 @@
 package org.jantor.elements.movement;
 
+import org.jantor.utils.CollisionManager;
 import org.jantor.utils.Vector2D;
 
 public abstract class Movement {
