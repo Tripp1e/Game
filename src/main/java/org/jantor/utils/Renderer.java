@@ -1,9 +1,13 @@
 package org.jantor.utils;
 
+import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.jantor.constants.Constants;
+import org.jantor.constants.PlayerInfo;
 import org.jantor.elements.Block;
 import org.jantor.elements.Collectable;
+import org.jantor.elements.Element;
 import org.jantor.elements.Player;
+import org.jantor.elements.movement.EntityMovement;
 import org.jantor.level.Level;
 
 import java.util.ArrayList;
@@ -30,15 +34,18 @@ public class Renderer {
     }
 
     public void updateBlocks() {
-        for (Block block : blocks) {
-            block.updateLocation();
+        for (Element element : getElements()) {
+            EntityMovement movement = PlayerInfo.getPlayer().movement;
+            //if (element.isInMainWorld() && CollisionManager.wouldCollide(movement.currentDirection.x, 0, Player.class, element)) break;
+            element.updateLocation();
         }
-        for (Block block : floorBlocks) {
-            block.updateLocation();
-        }
-        for (Collectable collectable : collectables) {
-            collectable.updateLocation();
-        }
+    }
+    private ArrayList<Element> getElements() {
+        ArrayList<Element> elements = new ArrayList<>();
+        elements.addAll(blocks);
+        elements.addAll(floorBlocks);
+        elements.addAll(collectables);
+        return elements;
     }
 
     private void loadFloor() {
@@ -50,9 +57,13 @@ public class Renderer {
     }
 
     private void loadCollectables() {
+        int amount = 0;
         for (Collectable coll: collectables) {
             coll.addTo(level);
+            amount++;
         }
+        Constants.coinAmount = amount;
+        level.addObject(Constants.coinCounter, Constants.screenSize.x / 2, 100);
     }
 
     private void loadBlocks() {
@@ -66,6 +77,7 @@ public class Renderer {
 
     private void loadPlayer() {
         player.addTo(level);
+        player.setLocation(player.getX(), player.getY() - 1);
     }
 
     private void renderBackground() {

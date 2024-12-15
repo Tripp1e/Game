@@ -1,5 +1,6 @@
 package org.jantor.screens;
 
+import greenfoot.Actor;
 import greenfoot.Color;
 import greenfoot.GreenfootImage;
 import greenfoot.World;
@@ -18,6 +19,16 @@ public class Screen extends World {
 
         background.setColor(backgroundColor);
         background.fill();
+    }
+
+    void addImage(GreenfootImage image, int x, int y) {
+        Actor imageActor = new Actor() {
+            @Override
+            public void act() {
+                setImage(image);
+            }
+        };
+        addObject(imageActor, x, y);
     }
 
 }

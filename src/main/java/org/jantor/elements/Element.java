@@ -56,5 +56,7 @@ public class Element extends Actor {
 
     @Override
     public Actor getOneIntersectingObject(Class<?> cls) { return super.getOneIntersectingObject(cls); }
+    @Override
+    public Actor getOneObjectAtOffset(int dx, int dy, Class<?> cls) { return super.getOneObjectAtOffset(dx, dy, cls); }
 
 }

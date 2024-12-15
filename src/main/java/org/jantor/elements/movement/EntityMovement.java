@@ -5,7 +5,7 @@ import org.jantor.constants.Constants;
 import org.jantor.elements.Block;
 import org.jantor.elements.Entity;
 import org.jantor.elements.Entity.EntityImage;
-import org.jantor.utils.Vector2D;
+import org.jantor.utils.CollisionManager;
 
 public class EntityMovement extends Movement {
     protected Entity entity;
@@ -14,24 +14,29 @@ public class EntityMovement extends Movement {
     private boolean hasJumped = false;
     protected int verticalMomentum = 0;
     int gravity = 1;
-    int jumpStrength = 20;
+    public int jumpStrength;
+    public int speed;
 
 
-    public EntityMovement(Entity entity) {
+    public EntityMovement(Entity entity, int speed, int jumpStrength) {
         super();
         this.entity = entity;
+        setJumpStrength(jumpStrength);
+        setSpeed(speed);
     }
 
     public void act() {
         applyGravity();
         updateLocation();
+        if (entity == null) return;
         entity.setImage(isFacingLeft() ? image().getCurrentImage() : image().getCurrentImageMirrored());
         //applySounds();
     }
 
     private void updateLocation() {
-        int dx = entity.speed * currentDirection.x;
-        int dy = onGround ? jumpStrength * currentDirection.y : verticalMomentum;
+        if (entity == null) return;
+        int dx = getSpeed() * currentDirection.x;
+        int dy = onGround ? getJumpStrength() * currentDirection.y : verticalMomentum;
 
         if (wouldCollide(dx, 0)) dx = 0;
         if (wouldCollide(0, dy)) dy = 0;
@@ -60,26 +65,14 @@ public class EntityMovement extends Movement {
         }
     }
 
+    private boolean wouldCollide(int dx, int dy) { return CollisionManager.wouldCollide(dx, dy, Block.class, entity); }
+
     private void applySounds() {
         int leftY = Direction.LEFT.vector.y;
 
         boolean playJumped = currentDirection.y == leftY && lastDirection.y == 0 && hasJumped;
         if (playJumped) Greenfoot.playSound("sounds/jumped.wav");
         hasJumped = onGround;
-    }
-
-    boolean wouldCollide(int dx, int dy) {
-        int halfWidth = Constants.elementSize.x / 2;
-        int[][] offsets = {{-1, -1}, {1, -1}, {-1, 1}, {1, 1}};
-
-        for (int[] offset : offsets) {
-            int newX = entity.getX() + offset[0] * halfWidth + dx;
-            int newY = entity.getY() + offset[1] * halfWidth + dy;
-            if (entity.getOneObjectAtOffset(newX - entity.getX(), newY - entity.getY(), Block.class) != null) {
-                return true;
-            }
-        }
-        return false;
     }
 
     private EntityImage image() {
@@ -92,5 +85,10 @@ public class EntityMovement extends Movement {
     private boolean isFacingLeft() {
         return latestDirection.x == -1;
     }
+
+    public int getSpeed() { return speed; }
+    public void setSpeed(int speed) { this.speed = speed; }
+    public void setJumpStrength(int jumpStrength) { this.jumpStrength = jumpStrength; }
+    public int getJumpStrength() { return jumpStrength; }
 
 }
