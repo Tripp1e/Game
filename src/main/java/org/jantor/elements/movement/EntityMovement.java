@@ -2,12 +2,13 @@ package org.jantor.elements.movement;
 
 import greenfoot.Greenfoot;
 import org.jantor.constants.Constants;
+import org.jantor.constants.PlayerInfo;
 import org.jantor.elements.Block;
 import org.jantor.elements.Entity;
 import org.jantor.elements.Entity.EntityImage;
 import org.jantor.utils.CollisionManager;
 
-public class EntityMovement extends Movement {
+public abstract class EntityMovement extends Movement {
     protected Entity entity;
 
     protected boolean onGround = false;
@@ -16,6 +17,7 @@ public class EntityMovement extends Movement {
     int gravity = 1;
     public int jumpStrength;
     public int speed;
+    boolean doubleJumped = false;
 
 
     public EntityMovement(Entity entity, int speed, int jumpStrength) {
@@ -47,18 +49,20 @@ public class EntityMovement extends Movement {
     private void applyGravity() {
         if (onGround) {
             onGround = wouldCollide(0, 1);
-            if (onGround) return;
-        }
 
+            if (onGround) {
+                verticalMomentum = 0;
+                doubleJumped = false;
+                return;
+            }
+        }
         verticalMomentum += gravity;
 
         if (wouldCollide(0, verticalMomentum)) {
-            while (wouldCollide(0, verticalMomentum) && verticalMomentum != 0) {
+            while (wouldCollide(0, verticalMomentum) && verticalMomentum != 0)
                 verticalMomentum--;
-            }
 
             onGround = wouldCollide(0, 1);
-
             verticalMomentum = 0;
         } else {
             onGround = false;

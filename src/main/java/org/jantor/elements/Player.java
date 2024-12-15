@@ -14,23 +14,27 @@ public class Player extends Entity {
     }
 
     void initInfoEntries() {
-        PlayerInfo.setInitial("coins", 0);
+        PlayerInfo.setInitial("coin", 0);
+        PlayerInfo.setInitial("star", 0);
         PlayerInfo.setInitial("speed", 5);
         PlayerInfo.setInitial("jumpStrength", 10);
     }
 
     public void collect(Class<? extends Collectable> cls) {
         if (!isTouching(cls)) return;
-        int coins = (int) PlayerInfo.data.getOrDefault("coins", 0);
-        PlayerInfo.data.put("coins", coins + 1);
-
         Collectable collectable = (Collectable) getOneIntersectingObject(cls);
+        String key = collectable.type.toString();
+
+        System.out.println("Collecting " + key);
+
+        int amount = (int) PlayerInfo.get(key, 0);
+        amount++;
+        PlayerInfo.set(key, amount);
+
+        Constants.updateCounters();
+
         Constants.renderer.collectables.remove(collectable);
         getWorld().removeObject(collectable);
-
-        Constants.coinCounter.setCounter((int) PlayerInfo.data.get("coins"));
-
-        if (coins + 1 == Constants.coinAmount) System.out.println("You completed the Game!");
     }
 
 }

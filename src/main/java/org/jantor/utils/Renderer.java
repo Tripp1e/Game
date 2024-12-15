@@ -1,6 +1,5 @@
 package org.jantor.utils;
 
-import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.jantor.constants.Constants;
 import org.jantor.constants.PlayerInfo;
 import org.jantor.elements.Block;
@@ -57,13 +56,11 @@ public class Renderer {
     }
 
     private void loadCollectables() {
-        int amount = 0;
         for (Collectable coll: collectables) {
             coll.addTo(level);
-            amount++;
         }
-        Constants.coinAmount = amount;
-        level.addObject(Constants.coinCounter, Constants.screenSize.x / 2, 100);
+        level.addObject(Constants.coinCounter, Constants.screenSize.x - 75, 50);
+        level.addObject(Constants.starCounter, Constants.screenSize.x - 75, 100);
     }
 
     private void loadBlocks() {
