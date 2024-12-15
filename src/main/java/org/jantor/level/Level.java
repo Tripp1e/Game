@@ -7,6 +7,8 @@ import org.jantor.elements.Collectable;
 import org.jantor.elements.Player;
 import org.jantor.screens.Screen;
 import org.jantor.shop.Shop;
+import org.jantor.ui.Button;
+import org.jantor.ui.Counter;
 import org.jantor.utils.Renderer;
 import org.jantor.utils.Vector2D;
 import org.json.JSONArray;
@@ -34,7 +36,7 @@ public class Level extends Screen {
         super();
 
         renderer = new Renderer(this);
-        setPaintOrder(Player.class);
+        setPaintOrder(Player.class, Button.class, Counter.class, Shop.class);
 
         loadLevel(filename);
 
@@ -74,7 +76,6 @@ public class Level extends Screen {
         for (String itemType : itemsJson.keySet()) {
             JSONArray coordsArray = itemsJson.getJSONArray(itemType);
             Object type = typeResolver.getType(itemType.toUpperCase());
-            System.out.println("Type: " + type);
 
             for (int i = 0; i < coordsArray.length(); i++) {
                 JSONArray coords = coordsArray.getJSONArray(i);
@@ -82,7 +83,6 @@ public class Level extends Screen {
                 int y = coords.getInt(1);
 
                 Vector2D vector = new Vector2D(x, y);
-                System.out.println("Position: " + vector);
                 if (type == null) continue;
 
                 infoList.add(new Object[]{type, vector});
@@ -116,7 +116,8 @@ public class Level extends Screen {
     public void act() {
         super.act();
         if (Greenfoot.isKeyDown("S") && getObjects(Shop.class).isEmpty()) {
-            addObject(new Shop(), 0, 0);
+            Shop shop = new Shop();
+            addObject(shop, Constants.screenSize.x / 2, Constants.screenSize.y / 2 - 25);
             System.out.println("Shop opened");
         }
     }

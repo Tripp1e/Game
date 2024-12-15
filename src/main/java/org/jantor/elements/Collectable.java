@@ -4,6 +4,7 @@ import org.jantor.utils.GreenfootImage;
 import org.jantor.utils.Vector2D;
 
 public class Collectable extends Element {
+    public final CollectableType type;
 
     public enum CollectableType {
         COIN,
@@ -16,6 +17,7 @@ public class Collectable extends Element {
         public GreenfootImage getImage() {
             return new GreenfootImage(filePath());
         }
+        public String toString() { return this.name().toLowerCase(); }
 
         public static CollectableType getByString(String name) {
             try {
@@ -28,6 +30,7 @@ public class Collectable extends Element {
 
     public Collectable(CollectableType type, Vector2D position) {
         super(type.getImage(), position);
+        this.type = type;
     }
 
 }

@@ -1,4 +1,4 @@
 package org.jantor.screens;
 
-public class Options extends Screen{
+public class Options extends Screen {
 }
