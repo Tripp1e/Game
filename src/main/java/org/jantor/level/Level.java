@@ -6,6 +6,7 @@ import org.jantor.constants.PlayerInfo;
 import org.jantor.elements.Block;
 import org.jantor.elements.Collectable;
 import org.jantor.elements.Player;
+import org.jantor.screens.Main;
 import org.jantor.screens.Screen;
 import org.jantor.shop.Shop;
 import org.jantor.ui.Button;
@@ -38,8 +39,11 @@ public class Level extends Screen {
 
         PlayerInfo.syncToOld();
 
+        Constants.currentLevel = Constants.levelNames.get(filename);
+        System.out.println("Loaded Level: " + Constants.currentLevel);
+
         renderer = new Renderer(this);
-        setPaintOrder(Player.class, Button.class, Counter.class, Shop.class);
+        setPaintOrder(Button.class, Counter.class, Shop.class, Player.class);
         loadLevel(filename);
 
         Constants.renderer = renderer;
@@ -120,6 +124,9 @@ public class Level extends Screen {
             Shop shop = new Shop();
             addObject(shop, Constants.screenSize.x / 2, Constants.screenSize.y / 2 - 25);
             System.out.println("Shop opened");
+        }
+        if ( Greenfoot.isKeyDown("Escape") && getObjects(Shop.class).isEmpty()) {
+            Greenfoot.setWorld(new Main());
         }
     }
 
