@@ -1,6 +1,8 @@
 package org.jantor.elements;
 
 import greenfoot.Greenfoot;
+import org.jantor.constants.Constants;
+import org.jantor.level.Level;
 import org.jantor.screens.Death;
 import org.jantor.utils.CollisionManager;
 import org.jantor.utils.GreenfootImage;
@@ -14,7 +16,8 @@ public class Block extends Element {
         GRASS,
         STONE,
         SAND,
-        DEATHBLOCK;
+        DEATHBLOCK,
+        GOALBLOCK;
 
         private String filePath() {
             return "images/blocks/" + name().toLowerCase() + ".png";
@@ -39,11 +42,14 @@ public class Block extends Element {
     }
 
     public void act() {
-        if (type == BlockType.DEATHBLOCK) {
-            if (CollisionManager.wouldCollide(0,-3, Player.class,this)) {
+        if (!CollisionManager.wouldCollide(0,-3, Player.class,this)) return;
+        switch (type) {
+            case DEATHBLOCK:
                 Greenfoot.setWorld(new Death("You touched the Death Block!"));
-            }
+            case GOALBLOCK:
+                Greenfoot.setWorld(new Level(Constants.levelNamesReversed.get(Constants.currentLevel + 1)));
         }
+
     }
 
 }

@@ -2,12 +2,10 @@ package org.jantor.ui;
 
 import greenfoot.Color;
 import greenfoot.Greenfoot;
-import org.jantor.constants.Constants;
 import org.jantor.utils.GreenfootImage;
 import org.jantor.level.Level;
 import org.jantor.screens.LevelSelection;
 import org.jantor.screens.Options;
-import org.jantor.utils.Vector2D;
 
 import static org.jantor.constants.PlayerInfo.buy;
 import static org.jantor.constants.PlayerInfo.unlock;

@@ -5,7 +5,7 @@ import org.jantor.ui.Button;
 import org.jantor.ui.Text;
 
 public class Death extends Screen {
-    Button reset = new Button("Reset", Button.ButtonType.LEVEL, "one");
+    Button reset = new Button("Reset", Button.ButtonType.LEVEL, Constants.getCurrentLevel());
     Text deathMessage = new Text();
 
     public Death(String deathReason) {
