@@ -3,7 +3,7 @@ package org.jantor.ui;
 import greenfoot.Color;
 import greenfoot.Greenfoot;
 import org.jantor.utils.GreenfootImage;
-import org.jantor.level.Level;
+import org.jantor.screens.Level;
 import org.jantor.screens.LevelSelection;
 import org.jantor.screens.Options;
 
@@ -56,7 +56,10 @@ public class Button extends Widget {
         this(name, type, str, () -> {}, 1, cost);
     }
     public Button(String name, ButtonType type ) {
-        this(name, type, null);
+        this(name, type, (String) null);
+    }
+    public Button(String name, ButtonType type, Runnable action) {
+        this(name, type, "", action, 1, 1);
     }
 
     public void act() {
@@ -99,6 +102,8 @@ public class Button extends Widget {
         return newImage;
     }
 
+
+
     public void disable(String str) {
         if (disabled) return;
         disabled = true;
@@ -111,5 +116,9 @@ public class Button extends Widget {
         disabled = false;
         image = getUpdatedImage();
         setImage();
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

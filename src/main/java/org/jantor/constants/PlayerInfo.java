@@ -65,8 +65,4 @@ public class PlayerInfo {
         return true;
     }
 
-    public static Player getPlayer() {
-        return Constants.renderer.player;
-    }
-
 }

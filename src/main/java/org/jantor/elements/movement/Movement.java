@@ -1,7 +1,9 @@
 package org.jantor.elements.movement;
 
-import org.jantor.utils.CollisionManager;
+import org.jantor.constants.Keybinds;
 import org.jantor.utils.Vector2D;
+
+import java.security.Key;
 
 public abstract class Movement {
     protected enum Direction {
@@ -14,6 +16,10 @@ public abstract class Movement {
 
         Direction(Vector2D vector) {
             this.vector = vector;
+        }
+
+        public String getKeybind() {
+            return Keybinds.get(name().toLowerCase());
         }
     }
 
