@@ -60,6 +60,9 @@ public class PlayerMovement extends EntityMovement {
         if (!entity.getWorld().getObjects(Shop.class).isEmpty()) currentDirection.toZero();
 
         super.act();
+        if (Greenfoot.isKeyDown("left")){
+
+        }
     }
 
     @Override
