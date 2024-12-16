@@ -21,9 +21,9 @@ public class Element extends Actor {
     public void updateLocation(boolean isFloor) {
         if (!isInMainWorld() && isWithinScreenBounds()) addTo(Constants.world);
         if ( isInMainWorld() && isAtEdge() && !isFloor) removeFromWorld();
-        if ( getWorld() != null) setLocation(getCoords().x, getCoords().y);
+        if ( getWorld() != null ) setLocation(getCoords().x, getCoords().y);
     }
-    public void updateLocation() { updateLocation(false);}
+    public void updateLocation() { updateLocation(false); }
     public boolean isInMainWorld() { return getWorld() == Constants.world; }
 
     public Vector2D getCoords() {

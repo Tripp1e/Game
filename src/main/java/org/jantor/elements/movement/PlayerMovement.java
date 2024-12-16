@@ -11,6 +11,7 @@ import org.jantor.utils.Vector2D;
 import java.util.Arrays;
 
 public class PlayerMovement extends EntityMovement {
+    public int screenMovementX = 0;
 
     public PlayerMovement(Player player) {
         super(player, (int) PlayerInfo.get("speed"), (int) PlayerInfo.get("jumpStrength"));
@@ -43,7 +44,7 @@ public class PlayerMovement extends EntityMovement {
         boolean isNearLeftEdge = entity.getX() < Constants.screenSize.x * 0.25;
         boolean isNearRightEdge = entity.getX() > Constants.screenSize.x * 0.75;
 
-        int screenOffsetX =
+        screenMovementX =
                 isNearLeftEdge && currentDirection.x == Direction.LEFT.vector.x
                 ? -1 * getSpeed()
 
@@ -52,9 +53,11 @@ public class PlayerMovement extends EntityMovement {
 
                 : 0);
         Constants.renderer.updateBlocks();
-        Constants.originOffset.add(new Vector2D(-screenOffsetX, 0));
+        Constants.originOffset.add(new Vector2D(-screenMovementX, 0));
 
-        if( !entity.getWorld().getObjects(Shop.class).isEmpty() ) currentDirection.toZero();
+        if (screenMovementX != 0) entity.setLocation(entity.getX() - screenMovementX, entity.getY());
+
+        if (!entity.getWorld().getObjects(Shop.class).isEmpty()) currentDirection.toZero();
 
         super.act();
     }

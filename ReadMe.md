@@ -8,34 +8,38 @@
 >- **Blocks to Enum**
 >- **Level Loading**
 >- **Gif Image Fixing**
+>- **Level Creation, Loading & Saving**
+>- **Menu Functionality**
+>- **Scrolling Level**
+>- **Assets**
+>- **Collectables**
+>- **Dynamic Block Loading**
 
 💅 Need Polishing
 ---
 
 > [!IMPORTANT]
->- **Level Creation, Loading & Saving**
->- **Menu Functionality**
->- **Scrolling Background**
->- **Assets**
-
+>- **Death Screen**
+>- **Shop**
 
 🔨 In Progress
 ---
 
 > [!WARNING]
->- **Collectables**
->- **Dynamic Block Loading**
+>- **Level Design**
+>- **Abilities**
+>- **Bug Fixes**
 
 📝 Planned
 ---
 
 > [!CAUTION]
->- **Level Design**
 
 
 How to use?
 ---
 
 1. Clone Project via Git
-2. Open Terminal
-3. run ```./gradlew runScenario```
+2. Install Greenfoot v3.7
+3. Open Terminal in Directory
+4. run ```./gradlew runScenario```

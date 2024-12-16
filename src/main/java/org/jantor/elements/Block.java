@@ -40,7 +40,7 @@ public class Block extends Element {
     public void act() {
         if (type == BlockType.DEATHBLOCK) {
             if (isTouching(Player.class)) {
-                Greenfoot.setWorld(new Death());
+                Greenfoot.setWorld(new Death("You touched the Death Block!"));
             }
         }
     }

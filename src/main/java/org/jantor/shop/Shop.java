@@ -17,6 +17,8 @@ public class Shop extends Actor {
 
     Button doubleJump = new Button("Unlock DoubleJump", ButtonType.SHOPSTAR, "doubleJump", 3    );
 
+    Button save = new Button("Save Data", ButtonType.GENERIC, "save", PlayerInfo::save, 0, 0);
+
     ArrayList<Actor> buttons = new ArrayList<>();
 
     public Shop() {
@@ -24,12 +26,14 @@ public class Shop extends Actor {
         Constants.world.addObject(speedUp, 250, 150);
         Constants.world.addObject(jumpUp, 250, 250);
         Constants.world.addObject(doubleJump, 950, 150);
+        Constants.world.addObject(save, 250, 350);
 
         setImage(new GreenfootImage("ui/shopBackground.png"));
 
         buttons.add(speedUp);
         buttons.add(jumpUp);
         buttons.add(doubleJump);
+        buttons.add(save);
         buttons.add(this);
     }
 

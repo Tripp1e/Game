@@ -22,35 +22,21 @@ public class Button extends Widget {
         LEVEL,
         OPTIONS,
         LEVELSELECTION,
-        TEXT;
+        TEXT,
+        GENERIC;
 
         public Runnable runnable(String str, Runnable run, int amount, int cost) {
             switch (this) {
                 case SHOPCOIN:
-                    return () -> {
-                        boolean bought = buy("coin", str, amount, cost);
-                    };
+                    return () -> buy("coin", str, amount, cost);
                 case SHOPSTAR:
-                    return () -> {
-                        boolean unlocked = unlock("star", str, cost);
-                    };
+                    return () -> unlock("star", str, cost);
                 case LEVEL:
-                    return () -> {
-                        Level level = new Level(str);
-                        Greenfoot.setWorld(level);
-                    };
+                    return () -> Greenfoot.setWorld(new Level(str));
                 case OPTIONS:
-                    return () -> {
-                        Options optionScreen = new Options();
-                        Greenfoot.setWorld(optionScreen);
-                    };
+                    return () -> Greenfoot.setWorld(new Options());
                 case LEVELSELECTION:
-                    return () -> {
-                        LevelSelection levelSelection = new LevelSelection();
-                        Greenfoot.setWorld(levelSelection);
-                    };
-                case TEXT:
-                    return () -> {};
+                    return () -> Greenfoot.setWorld(new LevelSelection());
                 default:
                     return run;
             }
@@ -61,8 +47,6 @@ public class Button extends Widget {
         super(name);
         image = new GreenfootImage("ui/button.png");
         this.action = type.runnable(str, action, amount, cost);
-
-        Font font = new Font("Comic Sans MS", true, false, 25);
 
         image.setFont(font);
         image.drawString(name, 15, 35);
@@ -82,6 +66,7 @@ public class Button extends Widget {
     public void act() {
         if (disabled) return;
         if (Greenfoot.mouseClicked(this)) {
+            System.out.println("Clicked!");
             action.run();
         }
     }
