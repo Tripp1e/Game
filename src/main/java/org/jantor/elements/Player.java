@@ -34,5 +34,4 @@ public class Player extends Entity {
         Constants.renderer.collectables.remove(collectable);
         getWorld().removeObject(collectable);
     }
-
 }

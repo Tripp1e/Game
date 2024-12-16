@@ -2,6 +2,7 @@ package org.jantor.elements;
 
 import greenfoot.Greenfoot;
 import org.jantor.screens.Death;
+import org.jantor.utils.CollisionManager;
 import org.jantor.utils.GreenfootImage;
 import org.jantor.utils.Vector2D;
 
@@ -39,7 +40,7 @@ public class Block extends Element {
 
     public void act() {
         if (type == BlockType.DEATHBLOCK) {
-            if (isTouching(Player.class)) {
+            if (CollisionManager.wouldCollide(0,-3, Player.class,this)) {
                 Greenfoot.setWorld(new Death("You touched the Death Block!"));
             }
         }
