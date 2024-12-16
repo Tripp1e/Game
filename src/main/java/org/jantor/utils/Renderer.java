@@ -1,13 +1,10 @@
 package org.jantor.utils;
 
 import org.jantor.constants.Constants;
-import org.jantor.constants.PlayerInfo;
 import org.jantor.elements.Block;
 import org.jantor.elements.Collectable;
 import org.jantor.elements.Element;
 import org.jantor.elements.Player;
-import org.jantor.elements.movement.EntityMovement;
-import org.jantor.elements.movement.PlayerMovement;
 import org.jantor.level.Level;
 
 import java.util.ArrayList;
@@ -34,11 +31,7 @@ public class Renderer {
     }
 
     public void updateBlocks() {
-        for (Element element : getElements()) {
-            PlayerMovement movement = (PlayerMovement) PlayerInfo.getPlayer().movement;
-            //if (element.isInMainWorld() && CollisionManager.wouldCollide(movement.screenMovementX, 0, Player.class, element)) break;
-            element.updateLocation();
-        }
+        for (Element element : getElements()) element.updateLocation();
     }
     private ArrayList<Element> getElements() {
         ArrayList<Element> elements = new ArrayList<>();
@@ -62,6 +55,10 @@ public class Renderer {
         }
         level.addObject(Constants.coinCounter, Constants.screenSize.x - 75, 50);
         level.addObject(Constants.starCounter, Constants.screenSize.x - 75, 100);
+
+        System.out.println("Updating...");
+
+        Constants.updateCounters();
     }
 
     private void loadBlocks() {

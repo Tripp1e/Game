@@ -19,10 +19,8 @@ public class LevelSelection extends Screen {
     }
 
     private void addLevels() {
-
         levels.add(new Button("Level One", Button.ButtonType.LEVEL, "one"));
         levels.add(new Button("Level Two", Button.ButtonType.LEVEL, "two"));
         levels.add(new Button("Level Three", Button.ButtonType.LEVEL, "three"));
-
     }
 }

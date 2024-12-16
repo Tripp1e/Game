@@ -2,6 +2,7 @@ package org.jantor.level;
 
 import greenfoot.Greenfoot;
 import org.jantor.constants.Constants;
+import org.jantor.constants.PlayerInfo;
 import org.jantor.elements.Block;
 import org.jantor.elements.Collectable;
 import org.jantor.elements.Player;
@@ -35,9 +36,10 @@ public class Level extends Screen {
     public Level(String filename) {
         super();
 
+        PlayerInfo.syncData();
+
         renderer = new Renderer(this);
         setPaintOrder(Player.class, Button.class, Counter.class, Shop.class);
-
         loadLevel(filename);
 
         Constants.renderer = renderer;
@@ -60,7 +62,6 @@ public class Level extends Screen {
 
         processLevelItems("collectables", collectableInfo, CollectableType::getByString);
         loadCollectables();
-        System.out.println(collectableInfo.toString());
 
         processLevelItems("blocks", blockInfo, BlockType::getByString);
         loadBlocks();

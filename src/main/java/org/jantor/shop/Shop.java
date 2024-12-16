@@ -17,7 +17,7 @@ public class Shop extends Actor {
 
     Button doubleJump = new Button("Unlock DoubleJump", ButtonType.SHOPSTAR, "doubleJump", 3    );
 
-    Button save = new Button("Save Data", ButtonType.GENERIC, "save", PlayerInfo::save, 0, 0);
+    Button save = new Button("Save Data", ButtonType.GENERIC, "save", () -> {}, 0, 0);
 
     ArrayList<Actor> buttons = new ArrayList<>();
 

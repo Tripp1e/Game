@@ -2,6 +2,7 @@ package org.jantor.constants;
 
 import greenfoot.World;
 import org.jantor.ui.Counter;
+import org.jantor.ui.Text;
 import org.jantor.utils.Renderer;
 import org.jantor.utils.Vector2D;
 
@@ -17,11 +18,22 @@ public class Constants {
     public static Renderer renderer;
     public static World world;
 
+    public static Text help = new Text("Help");
+
     public static Counter coinCounter = new Counter("Coin");
     public static Counter starCounter = new Counter("Star");
     public static void updateCounters() {
         coinCounter.setCounter((int) PlayerInfo.get("coin"));
         starCounter.setCounter((int) PlayerInfo.get("star"));
+    }
+    public static void resetCounters() {
+        int oldCoins = (int) PlayerInfo.getOld("coin", 0);
+        int oldStars = (int) PlayerInfo.getOld("star", 0);
+
+        PlayerInfo.set("coin", oldCoins);
+        PlayerInfo.set("star", oldStars);
+
+        updateCounters();
     }
 
 }
