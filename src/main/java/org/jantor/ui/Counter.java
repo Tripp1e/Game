@@ -39,7 +39,7 @@ public class Counter extends Widget {
 
     public void setIcon() {
         if (getWorld() == null) return;
-        if (getWorld().getObjects(Widget.class).) return;
+        if (getWorld().getObjects(Actor.class).contains(iconActor)) return;
         getWorld().removeObject(iconActor);
         getWorld().addObject(iconActor, getX() - 50, getY());
     }
