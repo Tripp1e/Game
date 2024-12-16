@@ -25,8 +25,6 @@ public class Player extends Entity {
         Collectable collectable = (Collectable) getOneIntersectingObject(cls);
         String key = collectable.type.toString();
 
-        System.out.println("Collecting " + key);
-
         int amount = (int) PlayerInfo.get(key, 0);
         amount++;
         PlayerInfo.set(key, amount);

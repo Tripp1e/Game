@@ -2,7 +2,6 @@ package org.jantor.utils;
 
 import greenfoot.Color;
 import greenfoot.Font;
-import org.jantor.screens.Screen;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -22,41 +21,29 @@ public class GreenfootImage extends greenfoot.GreenfootImage {
         this(vec.x, vec.y);
     }
 
-
-    public void drawRoundRect(int borderRadius, int width, int height, Color color) {
-
-        this.setColor(Screen.backgroundColor);
-        this.fill();
-
-        this.setColor(color);
-
-        this.fillOval(0, 0, borderRadius * 2, borderRadius * 2);
-        this.fillOval(width - borderRadius * 2, 0, borderRadius * 2, borderRadius * 2);
-        this.fillOval(0, height - borderRadius * 2, borderRadius * 2, borderRadius * 2);
-        this.fillOval(width - borderRadius * 2, height - borderRadius * 2, borderRadius * 2, borderRadius * 2);
-
-        this.fillRect(borderRadius, 0, width - 2 * borderRadius, height);
-        this.fillRect(0, borderRadius, width, height - 2 * borderRadius);
-    }
-
-    public void addText(String text, Vector2D vec, int margin) {
-        Color backgroundColor = new Color(128, 128, 128, 200);
-
-        setColor(backgroundColor);
+    public void addBackground(Color color) {
+        setColor(color);
         fill();
-
-        setFont(getFont());
-        setColor(Color.RED);
-
-        drawString(text, margin, getHeight() - margin);
     }
-    public void addText(String text, int margin) {
-        addText(text, getStingSize(text, getFont(), this), margin);
+
+    public void addText(String text, Vector2D textPos, int margin, Color color) {
+        setFont(getFont());
+        setColor(color);
+
+        drawString(text, textPos.x + margin, textPos.y - margin);
+    }
+    public void addText(String text, Vector2D textPos, int margin) {
+        addText(text, textPos, margin, Color.WHITE);
+    }
+    public void addCenteredText(String text, int margin, Color color) {
+        addText(text, new Vector2D(0, getHeight()), margin, color);
+    }
+    public void addCenteredText(String text, int margin) {
+        addCenteredText(text, margin, Color.WHITE);
     }
 
     public static Vector2D getStingSize(String text, Font font, GreenfootImage image) {
         java.awt.Font awtFont = new java.awt.Font(font.getName(), java.awt.Font.BOLD, font.getSize());
-
         int w;
         try {
             Graphics2D g2d = (Graphics2D) image.getAwtImage().getGraphics();

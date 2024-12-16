@@ -12,7 +12,6 @@ public class Main extends Screen {
     Button start =          new Button("Start!", ButtonType.LEVEL, "one");
 
     GreenfootImage background = new GreenfootImage("ui/mainBackground.png");
-    //GreenfootImage knightMain = new GreenfootImage("ui/mainKnight.png");
 
     public Main() {
         super();

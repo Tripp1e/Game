@@ -9,12 +9,13 @@ public class Death extends Screen {
     Text deathMessage = new Text();
 
     public Death(String deathReason) {
-        deathMessage.setText(deathReason);
-        deathMessage.addToMiddle(this);
-
         setBackground("ui/deathBackground.png");
 
+        deathMessage.setText(deathReason);
+        deathMessage.addToMiddle(this);
         addObject(reset, Constants.screenSize.x / 2, Constants.screenSize.y / 2 +200);
+
+        Constants.resetCounters();
     }
 
 }

@@ -35,7 +35,6 @@ public class PlayerMovement extends EntityMovement {
                 verticalMomentum = -getJumpStrength();
                 onGround = false;
             } else if (!doubleJumped) {
-                System.out.println("Double jumped!");
                 verticalMomentum = -getJumpStrength();
                 doubleJumped = true;
             }
