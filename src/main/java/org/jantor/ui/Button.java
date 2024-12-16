@@ -1,7 +1,6 @@
 package org.jantor.ui;
 
 import greenfoot.Color;
-import greenfoot.Font;
 import greenfoot.Greenfoot;
 import org.jantor.level.Level;
 import org.jantor.screens.LevelSelection;
@@ -45,9 +44,9 @@ public class Button extends Widget {
 
     public Button(String name, ButtonType type, String str, Runnable action, int amount, int cost) {
         super(name);
-        image = new GreenfootImage("ui/button.png");
         this.action = type.runnable(str, action, amount, cost);
 
+        image = new GreenfootImage("ui/button.png");
         image.setFont(font);
         image.drawString(name, 15, 35);
 
@@ -66,7 +65,7 @@ public class Button extends Widget {
     public void act() {
         if (disabled) return;
         if (Greenfoot.mouseClicked(this)) {
-            System.out.println("Clicked!");
+            disable(name);
             action.run();
         }
     }

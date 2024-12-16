@@ -1,6 +1,7 @@
 package org.jantor.utils;
 
 import greenfoot.Color;
+import greenfoot.Font;
 import org.jantor.screens.Screen;
 
 import java.awt.*;
@@ -9,6 +10,7 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
 public class GreenfootImage extends greenfoot.GreenfootImage {
+
     public GreenfootImage(String filename) {
         super(filename);
     }
@@ -36,12 +38,37 @@ public class GreenfootImage extends greenfoot.GreenfootImage {
         this.fillRect(borderRadius, 0, width - 2 * borderRadius, height);
         this.fillRect(0, borderRadius, width, height - 2 * borderRadius);
     }
-    public void drawRoundRect(int borderRadius, Vector2D vec, Color color) {
-        drawRoundRect(borderRadius, vec.x, vec.y, color);
+
+    public void addText(String text, Vector2D vec, int margin) {
+        Color backgroundColor = new Color(128, 128, 128, 200);
+
+        setColor(backgroundColor);
+        fill();
+
+        setFont(getFont());
+        setColor(Color.RED);
+
+        drawString(text, margin, getHeight() - margin);
+    }
+    public void addText(String text, int margin) {
+        addText(text, getStingSize(text, getFont(), this), margin);
     }
 
-    public void drawString(String string, Vector2D vec) {
-        super.drawString(string, vec.x, vec.y);
+    public static Vector2D getStingSize(String text, Font font, GreenfootImage image) {
+        java.awt.Font awtFont = new java.awt.Font(font.getName(), java.awt.Font.BOLD, font.getSize());
+
+        int w;
+        try {
+            Graphics2D g2d = (Graphics2D) image.getAwtImage().getGraphics();
+            g2d.setFont(awtFont);
+            FontMetrics fm = g2d.getFontMetrics();
+            w = fm.stringWidth(text);
+        } catch (Exception e) {
+            return new Vector2D(0, 0);
+        }
+
+        int h = font.getSize();
+        return new Vector2D(w, h);
     }
 
     public GreenfootImage mirror() {
