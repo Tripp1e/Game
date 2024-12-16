@@ -1,13 +1,12 @@
-package org.jantor.level;
+package org.jantor.screens;
 
 import greenfoot.Greenfoot;
 import org.jantor.constants.Constants;
+import org.jantor.constants.Keybinds;
 import org.jantor.constants.PlayerInfo;
 import org.jantor.elements.Block;
 import org.jantor.elements.Collectable;
 import org.jantor.elements.Player;
-import org.jantor.screens.Main;
-import org.jantor.screens.Screen;
 import org.jantor.shop.Shop;
 import org.jantor.ui.Button;
 import org.jantor.ui.Counter;
@@ -117,16 +116,11 @@ public class Level extends Screen {
         }
     }
 
-    @Override
     public void act() {
         super.act();
-        if (Greenfoot.isKeyDown("S") && getObjects(Shop.class).isEmpty()) {
+        if (Greenfoot.isKeyDown(Keybinds.get("shop")) && getObjects(Shop.class).isEmpty()) {
             Shop shop = new Shop();
             addObject(shop, Constants.screenSize.x / 2, Constants.screenSize.y / 2 - 25);
-            System.out.println("Shop opened");
-        }
-        if ( Greenfoot.isKeyDown("Escape") && getObjects(Shop.class).isEmpty()) {
-            Greenfoot.setWorld(new Main());
         }
     }
 

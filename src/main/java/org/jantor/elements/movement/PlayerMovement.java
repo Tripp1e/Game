@@ -27,10 +27,10 @@ public class PlayerMovement extends EntityMovement {
         ((Player) entity).collect(Collectable.class);
 
         Arrays.stream(Movement.Direction.values()).forEach(direction -> {
-            if (Greenfoot.isKeyDown(direction.name().toLowerCase())) currentDirection.add(direction.vector).normalize();
+            if (Greenfoot.isKeyDown(direction.getKeybind())) currentDirection.add(direction.vector).normalize();
         });
 
-        if (Greenfoot.isKeyDown(Movement.Direction.UP.name().toLowerCase())) {
+        if (Greenfoot.isKeyDown(Direction.UP.getKeybind())) {
             if (onGround) {
                 verticalMomentum = -getJumpStrength();
                 onGround = false;
@@ -59,9 +59,6 @@ public class PlayerMovement extends EntityMovement {
         if (!entity.getWorld().getObjects(Shop.class).isEmpty()) currentDirection.toZero();
 
         super.act();
-        if (Greenfoot.isKeyDown("left")){
-
-        }
     }
 
     @Override

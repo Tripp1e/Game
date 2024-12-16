@@ -2,7 +2,7 @@ package org.jantor.elements;
 
 import greenfoot.Greenfoot;
 import org.jantor.constants.Constants;
-import org.jantor.level.Level;
+import org.jantor.screens.Level;
 import org.jantor.screens.Death;
 import org.jantor.utils.CollisionManager;
 import org.jantor.utils.GreenfootImage;
@@ -46,8 +46,10 @@ public class Block extends Element {
         switch (type) {
             case DEATHBLOCK:
                 Greenfoot.setWorld(new Death("You touched the Death Block!"));
+                break;
             case GOALBLOCK:
                 Greenfoot.setWorld(new Level(Constants.levelNamesReversed.get(Constants.currentLevel + 1)));
+                break;
         }
 
     }

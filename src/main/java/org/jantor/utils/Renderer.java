@@ -5,7 +5,7 @@ import org.jantor.elements.Block;
 import org.jantor.elements.Collectable;
 import org.jantor.elements.Element;
 import org.jantor.elements.Player;
-import org.jantor.level.Level;
+import org.jantor.screens.Level;
 
 import java.util.ArrayList;
 
@@ -23,6 +23,8 @@ public class Renderer {
     }
 
     public void init() {
+        Constants.originOffset.copy(new Vector2D(0, Constants.screenSize.y));
+
         loadFloor();
         loadBlocks();
         loadCollectables();
