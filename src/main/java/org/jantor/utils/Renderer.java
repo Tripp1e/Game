@@ -7,6 +7,7 @@ import org.jantor.elements.Collectable;
 import org.jantor.elements.Element;
 import org.jantor.elements.Player;
 import org.jantor.elements.movement.EntityMovement;
+import org.jantor.elements.movement.PlayerMovement;
 import org.jantor.level.Level;
 
 import java.util.ArrayList;
@@ -34,8 +35,8 @@ public class Renderer {
 
     public void updateBlocks() {
         for (Element element : getElements()) {
-            EntityMovement movement = PlayerInfo.getPlayer().movement;
-            //if (element.isInMainWorld() && CollisionManager.wouldCollide(movement.currentDirection.x, 0, Player.class, element)) break;
+            PlayerMovement movement = (PlayerMovement) PlayerInfo.getPlayer().movement;
+            //if (element.isInMainWorld() && CollisionManager.wouldCollide(movement.screenMovementX, 0, Player.class, element)) break;
             element.updateLocation();
         }
     }

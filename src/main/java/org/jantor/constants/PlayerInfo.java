@@ -1,7 +1,15 @@
 package org.jantor.constants;
 
 import org.jantor.elements.Player;
+import org.json.JSONObject;
+
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.io.*;
+import java.nio.file.*;
+import java.util.Map;
+
+import static org.jantor.utils.JsonReader.getJsonObject;
 
 public class PlayerInfo {
 
@@ -49,5 +57,28 @@ public class PlayerInfo {
 
     public static Player getPlayer() {
         return Constants.renderer.player;
+    }
+
+    public static void save() {
+        JSONObject jsonObject = new JSONObject(data);
+        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get("/saves/save.json"), StandardCharsets.UTF_8)) {
+            writer.write(jsonObject.toString(4));
+            System.out.println("save save save save save save");
+        } catch (IOException ignored) { ignored.printStackTrace(); }
+    }
+    public static void load() {
+        String content;
+        InputStream inputStream = PlayerInfo.class.getResourceAsStream("/saves/save.json");
+        if (inputStream == null) { System.err.println("Error: Could not find the save file"); return; }
+        JSONObject saveJson = new JSONObject();
+        try {
+            saveJson = getJsonObject(inputStream);
+        } catch (IOException ignored) {}
+        HashMap<String, Object> map = new HashMap<>();
+
+        JSONObject finalSaveJson = saveJson;
+        saveJson.keySet().forEach(key -> map.put(key, finalSaveJson.get(key)));
+        
+        data = map;
     }
 }
