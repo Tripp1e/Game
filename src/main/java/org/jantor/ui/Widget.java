@@ -11,6 +11,8 @@ public abstract class Widget extends Actor {
     GreenfootImage image;
     Font font = new Font("Comic Sans MS", true, false, 25);
 
+    int textMargin = 10;
+
     public Widget(String name) {
         this.name = name;
     }
