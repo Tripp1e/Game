@@ -23,16 +23,11 @@ public class Constants {
     public static Counter coinCounter = new Counter("Coin");
     public static Counter starCounter = new Counter("Star");
     public static void updateCounters() {
-        coinCounter.setCounter((int) PlayerInfo.get("coin"));
-        starCounter.setCounter((int) PlayerInfo.get("star"));
+        coinCounter.setCounter((int) PlayerInfo.get("coin", 0));
+        starCounter.setCounter((int) PlayerInfo.get("star", 0));
     }
     public static void resetCounters() {
-        int oldCoins = (int) PlayerInfo.getOld("coin", 0);
-        int oldStars = (int) PlayerInfo.getOld("star", 0);
-
-        PlayerInfo.set("coin", oldCoins);
-        PlayerInfo.set("star", oldStars);
-
+        PlayerInfo.resetToOld();
         updateCounters();
     }
 

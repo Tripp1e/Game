@@ -36,7 +36,7 @@ public class Level extends Screen {
     public Level(String filename) {
         super();
 
-        PlayerInfo.syncData();
+        PlayerInfo.syncToOld();
 
         renderer = new Renderer(this);
         setPaintOrder(Player.class, Button.class, Counter.class, Shop.class);

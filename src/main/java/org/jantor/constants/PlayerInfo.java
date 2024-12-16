@@ -8,9 +8,13 @@ public class PlayerInfo {
     public static HashMap<String, Object> data = new HashMap<>();
     public static HashMap<String, Object> oldData = new HashMap<>();
 
-    public static void syncData() {
-            oldData.clear();
-            oldData.putAll(data);
+    public static void syncToOld() {
+        oldData.clear();
+        oldData.putAll(data);
+    }
+    public static void resetToOld() {
+        data.clear();
+        data.putAll(oldData);
     }
 
     public static Object get(String key) {
